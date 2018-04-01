@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>959</width>
+    <height>667</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,15 +19,24 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>801</width>
-      <height>561</height>
+      <width>150</width>
+      <height>48</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QTabWidget" name="tabWidget">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="currentIndex">
         <number>0</number>
+       </property>
+       <property name="documentMode">
+        <bool>false</bool>
        </property>
        <property name="tabsClosable">
         <bool>true</bool>
@@ -75,7 +84,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>959</width>
      <height>23</height>
     </rect>
    </property>
@@ -92,6 +101,8 @@
     <property name="title">
      <string>配置</string>
     </property>
+    <addaction name="action_3"/>
+    <addaction name="action_5"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
@@ -116,6 +127,16 @@
   <action name="action_4">
    <property name="text">
     <string>退出</string>
+   </property>
+  </action>
+  <action name="action_3">
+   <property name="text">
+    <string>控制端配置</string>
+   </property>
+  </action>
+  <action name="action_5">
+   <property name="text">
+    <string>服务端配置</string>
    </property>
   </action>
  </widget>

@@ -1,0 +1,87 @@
+def createRightMenu(self):  
+
+    # Create right menu for treeview  
+    self.treeview.setContextMenuPolicy(Qt.CustomContextMenu)  
+    self.treeview.customContextMenuRequested.connect(self.showRightMenu)  
+
+    self.rightMenu = QMenu(self.treeview)  
+
+    self.rightMenu.addAction(self.upLoadAct)  
+    self.rightMenu.addAction(self.importAct)  
+    self.rightMenu.addAction(self.refreshAct)  
+    self.rightMenu.addAction(self.newFolderAct)  
+
+    self.rightMenu.addSeparator()  
+      
+    # self.rightMenu.addAction(self.RenameAct)  
+    self.rightMenu.addAction(self.propertyAct)  
+      
+    self.rightMenu.addAction(self.openfileAct)  
+    self.rightMenu.addAction(self.removeAct)  
+    self.rightMenu.addAction(self.OtherPlayAct)  
+    self.rightMenu.addAction(self.rebuildAct)
+
+
+def showRightMenu(self, pos):  
+
+    index = self.treeview.selectionModel().currentIndex()  
+    ItemFullPath = self.getItemPath()  
+    LastFolder = ItemFullPath.split('/')[-1]  
+    # self.rightMenu.move(self.pos() + pos),  
+    self.rightMenu.exec_(QCursor.pos())  
+
+    if index:  
+        if os.path.isdir(ItemFullPath):  
+
+            if LastFolder == 'MediaDB':  
+                self.removeAct.setEnabled(False)  
+            else:  
+                self.removeAct.setEnabled(True)  
+              
+            self.upLoadAct.setEnabled(True)  
+            self.importAct.setEnabled(True)  
+            self.refreshAct.setEnabled(True)  
+            self.newFolderAct.setEnabled(True)  
+
+            self.propertyAct.setEnabled(False)  
+            self.openfileAct.setEnabled(True)  
+            self.OtherPlayAct.setEnabled(False)  
+            self.rebuildAct.setEnabled(True)  
+
+            self.playAct.setEnabled(False)  
+            self.StopMediaAct.setEnabled(False)
+            # self.rightMenu.show()
+
+        if os.path.isfile(ItemFullPath):  
+
+            self.upLoadAct.setEnabled(False)  
+            self.importAct.setEnabled(False)  
+            self.refreshAct.setEnabled(True)  
+            self.newFolderAct.setEnabled(False)  
+
+            self.propertyAct.setEnabled(True)  
+            self.openfileAct.setEnabled(True)  
+            self.removeAct.setEnabled(True)  
+            self.OtherPlayAct.setEnabled(True)  
+            self.rebuildAct.setEnabled(True)  
+
+            self.playAct.setEnabled(True)  
+            self.StopMediaAct.setEnabled(True)  
+
+        self.rightMenu.show()  
+
+    else:  
+        self.upLoadAct.setEnabled(False)  
+        self.importAct.setEnabled(False)  
+        self.refreshAct.setEnabled(False)  
+        self.newFolderAct.setEnabled(False)  
+
+        self.propertyAct.setEnabled(False)  
+        self.openfileAct.setEnabled(False)  
+        self.removeAct.setEnabled(False)  
+        self.OtherPlayAct.setEnabled(False)  
+        self.rebuildAct.setEnabled(False)  
+
+        self.playAct.setEnabled(False)  
+        self.StopMediaAct.setEnabled(False)  
+        self.rightMenu.show()

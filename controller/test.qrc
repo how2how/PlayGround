@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="test">
+    <file alias="process">ui/resources/img/process.png</file>
+    <file alias="exit">ui/resources/img/power_exit.png</file>
+    <file alias="settings">ui/resources/img/setting.png</file>
+    <file alias="server_settings">ui/resources/img/Server_setting.png</file>
+    <file alias="cmd">ui/resources/img/terminal.png</file>
+    <file alias="folder">ui/resources/img/folder.png</file>
+  </qresource>
+</RCC>

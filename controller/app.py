@@ -2,7 +2,8 @@
 import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication
 
-from ui.controller import Ui_MainWindow
+# from controller.ui.controller import Ui_MainWindow
+from controller.ui.MainTable import Ui_MainWindow
 
 
 if __name__ == '__main__':
