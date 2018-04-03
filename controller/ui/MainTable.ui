@@ -92,7 +92,7 @@
      <x>0</x>
      <y>0</y>
      <width>928</width>
-     <height>23</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -135,7 +135,7 @@
    </attribute>
    <addaction name="action_ctlSettings"/>
    <addaction name="action_svrSettings"/>
-   <addaction name="action_exit"/>
+   <addaction name="action_quit"/>
   </widget>
   <widget class="QToolBar" name="toolBar_2">
    <property name="windowTitle">
@@ -199,7 +199,7 @@
     <string>Ctrl+Shift+P</string>
    </property>
   </action>
-  <action name="action_exit">
+  <action name="action_quit">
    <property name="icon">
     <iconset resource="../test.qrc">
      <normaloff>:/test/exit</normaloff>:/test/exit</iconset>

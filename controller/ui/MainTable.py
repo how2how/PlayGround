@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainTable.ui'
 #
-# Created by: PyQt5 UI code generator 5.10.1
+# Created by: PyQt5 UI code generator 5.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -50,7 +50,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.tableWidget)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 928, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 928, 20))
         self.menubar.setObjectName("menubar")
         self.menu = QtWidgets.QMenu(self.menubar)
         self.menu.setObjectName("menu")
@@ -84,11 +84,11 @@ class Ui_MainWindow(object):
         icon2.addPixmap(QtGui.QPixmap(":/test/process"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_process.setIcon(icon2)
         self.action_process.setObjectName("action_process")
-        self.action_exit = QtWidgets.QAction(MainWindow)
+        self.action_test = QtWidgets.QAction(MainWindow)
         icon3 = QtGui.QIcon()
         icon3.addPixmap(QtGui.QPixmap(":/test/exit"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.action_exit.setIcon(icon3)
-        self.action_exit.setObjectName("action_exit")
+        self.action_test.setIcon(icon3)
+        self.action_test.setObjectName("action_quit")
         self.action_ctlSettings = QtWidgets.QAction(MainWindow)
         icon4 = QtGui.QIcon()
         icon4.addPixmap(QtGui.QPixmap(":/test/settings"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -109,7 +109,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.about.menuAction())
         self.toolBar.addAction(self.action_ctlSettings)
         self.toolBar.addAction(self.action_svrSettings)
-        self.toolBar.addAction(self.action_exit)
+        self.toolBar.addAction(self.action_test)
         self.toolBar_2.addAction(self.action_file)
         self.toolBar_2.addAction(self.action_cmd)
         self.toolBar_2.addAction(self.action_process)
@@ -149,9 +149,9 @@ class Ui_MainWindow(object):
         self.action_process.setText(_translate("MainWindow", "进程管理"))
         self.action_process.setToolTip(_translate("MainWindow", "进程管理"))
         self.action_process.setShortcut(_translate("MainWindow", "Ctrl+Shift+P"))
-        self.action_exit.setText(_translate("MainWindow", "退出"))
-        self.action_exit.setToolTip(_translate("MainWindow", "关闭系统"))
-        self.action_exit.setShortcut(_translate("MainWindow", "Ctrl+Q"))
+        self.action_test.setText(_translate("MainWindow", "退出"))
+        self.action_test.setToolTip(_translate("MainWindow", "关闭系统"))
+        self.action_test.setShortcut(_translate("MainWindow", "Ctrl+Q"))
         self.action_ctlSettings.setText(_translate("MainWindow", "控制端配置"))
         self.action_ctlSettings.setToolTip(_translate("MainWindow", "控制端配置"))
         self.action_ctlSettings.setShortcut(_translate("MainWindow", "Ctrl+Alt+C"))
@@ -159,4 +159,4 @@ class Ui_MainWindow(object):
         self.action_svrSettings.setToolTip(_translate("MainWindow", "服务端设置"))
         self.action_svrSettings.setShortcut(_translate("MainWindow", "Ctrl+Alt+S"))
 
-from controller import  test
+from controller import test_rc
