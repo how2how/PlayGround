@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_ctlSettings(object):
     def setupUi(self, ctlSettings):
         ctlSettings.setObjectName("ctlSettings")
-        ctlSettings.resize(450, 288)
+        ctlSettings.resize(422, 288)
         ctlSettings.setModal(True)
         self.buttonBox = QtWidgets.QDialogButtonBox(ctlSettings)
         self.buttonBox.setGeometry(QtCore.QRect(70, 250, 341, 32))

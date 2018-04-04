@@ -14,7 +14,7 @@ class Ui_svrSettings(object):
         svrSettings.resize(410, 172)
         svrSettings.setModal(True)
         self.buttonBox = QtWidgets.QDialogButtonBox(svrSettings)
-        self.buttonBox.setGeometry(QtCore.QRect(40, 120, 341, 32))
+        self.buttonBox.setGeometry(QtCore.QRect(50, 130, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")

@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Cmd(object):
     def setupUi(self, Cmd):
         Cmd.setObjectName("Cmd")
-        Cmd.resize(850, 658)
+        Cmd.resize(600, 450)
         self.horizontalLayout = QtWidgets.QHBoxLayout(Cmd)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.textEdit = QtWidgets.QTextEdit(Cmd)

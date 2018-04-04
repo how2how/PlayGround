@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>530</width>
-    <height>210</height>
+    <width>600</width>
+    <height>450</height>
    </rect>
   </property>
   <property name="contextMenuPolicy">
-   <enum>Qt::ActionsContextMenu</enum>
+   <enum>Qt::CustomContextMenu</enum>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
@@ -19,28 +19,20 @@
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <widget class="QSplitter" name="splitter">
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="lineWidth">
-      <number>3</number>
-     </property>
-     <property name="midLineWidth">
-      <number>3</number>
-     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <property name="handleWidth">
-      <number>3</number>
-     </property>
-     <widget class="QTreeView" name="treeView"/>
      <widget class="QListView" name="listView">
       <property name="mouseTracking">
        <bool>true</bool>
       </property>
       <property name="tabletTracking" stdset="0">
        <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QTreeView" name="treeView">
+      <property name="contextMenuPolicy">
+       <enum>Qt::CustomContextMenu</enum>
       </property>
      </widget>
     </widget>
@@ -50,8 +42,23 @@
    <property name="text">
     <string>新建</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+N</string>
+  </action>
+  <action name="action_upload">
+   <property name="text">
+    <string>上传</string>
+   </property>
+   <property name="toolTip">
+    <string>上传文件</string>
+   </property>
+  </action>
+  <action name="action_download">
+   <property name="text">
+    <string>下载</string>
+   </property>
+  </action>
+  <action name="action_refresh">
+   <property name="text">
+    <string>刷新</string>
    </property>
   </action>
  </widget>
