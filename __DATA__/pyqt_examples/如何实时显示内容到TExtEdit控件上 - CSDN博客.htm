@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="canonical" href="https://blog.csdn.net/qingyang1014/article/details/38628275"/> 
+    <script type="text/javascript">
+        var username = "qingyang1014";
+        var _blogger = username;
+        var blog_address = "https://blog.csdn.net/qingyang1014";
+        var static_host = "https://csdnimg.cn/release/phoenix/";
+        var currentUserName = ""; 
+        var fileName = '38628275';
+        var commentscount = 0;
+        var islock = false;
+        window.quickReplyflag = true;
+        var totalFloor = 0;
+        var isBole = false;
+        var isDigg = false;
+        var isExpert = false;
+        var isAdm = false;
+        var baiduKey = "python+oyqt5+%E5%AE%9E%E6%97%B6%E6%9B%B4%E6%96%B0edit%E7%9A%84%E5%86%85%E5%AE%B9";
+        var needInsertBaidu = false;
+        var isShowAds = true;
+        var ChannelId = 0;
+    </script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="referrer" content="always">
+    <script src="https://csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://csdnimg.cn/public/static/css/avatar.css">
+                <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/production/main-f869aa95a4.css">
+          <link rel="stylesheet" href="https://csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+
+    <script src="https://csdnimg.cn/rabbit/exposure-click/main-1.0.5.js"></script>
+    <script type="text/javascript" src="https://csdnimg.cn/pubfooter/js/tracking-1.0.2.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://csdnimg.cn/release/phoenix/production/main-dde4360358.js"></script>
+
+    <script src="https://dup.baidustatic.com/js/ds.js"></script>
+    <script type="text/javascript">
+        // Traffic Stats of the entire Web site By baidu
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        // Traffic Stats of the entire Web site By baidu end
+    </script>
+    <meta name="description" content="由于PyQt开发执行函数完毕返回结果时是将所有的结果都运行结束了返回，但是这样会有很长的yanchi" />
+    <meta name="keywords" content="PyQt,实时显示" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+    <title>如何实时显示内容到TExtEdit控件上 - CSDN博客</title>
+    <link href="https://csdnimg.cn/public/favicon.ico" rel="SHORTCUT ICON">
+              <script src="https://csdnimg.cn/search/baidu_search-1.1.2.js?v=201802071056&autorun=true&install=true&keyword=python+oyqt5+%E5%AE%9E%E6%97%B6%E6%9B%B4%E6%96%B0edit%E7%9A%84%E5%86%85%E5%AE%B9"  type="text/javascript"></script>
+                      <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/production/htmledit_views-0a60691e80.css">
+            <style>
+            .MathJax, .MathJax_Message, .MathJax_Preview{
+                display: none
+            }
+      </style>
+</head>
+<body>
+<script id="toolbar-tpl-scriptId" prod="download" skin="black" src="https://csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="https://blog.csdn.net/"></script>
+<div class="container clearfix">
+  <main>
+    <div style="display:none;">
+      <img src="" onerror='setTimeout(function(){if(!/(csdn.net|iteye.com|baiducontent.com|googleusercontent.com|360webcache.com|sogoucdn.com|bingj.com|baidu.com)$/.test(window.location.hostname)){window.location.href="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74"}},3000);'>
+    </div>
+    <article>
+        <h1 class="csdn_top">如何实时显示内容到TExtEdit控件上</h1>
+        <div class="article_bar clearfix">
+            <div class="artical_tag">
+                <span class="original">
+                原创                </span>
+                <span class="time">2014年08月17日 00:52:14</span>
+            </div>
+
+            <ul class="article_tags clearfix csdn-tracking-statistics tracking-click" data-mod="popu_377" >
+                <li class="tit">标签：</li>
+
+<!--          [startarticletags]-->
+                                                            <li><a href="http://so.csdn.net/so/search/s.do?q=PyQt&t=blog" target="_blank">PyQt</a> <span>/</span></li>
+                                            <li><a href="http://so.csdn.net/so/search/s.do?q=实时显示&t=blog" target="_blank">实时显示</a> <span>/</span></li>
+                                    <!--          [endarticletags]-->
+            </ul>
+            <ul class="right_bar">
+                <li><button class="btn-noborder"><i class="icon iconfont icon-read"></i><span class="txt">3152</span></button></li>
+                <li class="edit">
+                    <a class="btn-noborder" href="" >
+                        <i class="icon iconfont icon-bianji"></i><span class="txt">编辑</span>
+                    </a>
+                </li>
+                <li class="del">
+                    <a class="btn-noborder" onclick="javascript:deleteArticle(fileName);return false;">
+                        <i class="icon iconfont icon-shanchu"></i><span class="txt">删除</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="article_content" class="article_content csdn-tracking-statistics tracking-click" data-mod="popu_519" data-dsm="post">
+                            <div class="htmledit_views">
+                        
+<p>由于PyQt开发执行函数完毕返回结果时是将所有的结果都运行结束了返回，但是这样会有很长的延迟，经过查询</p>
+<p>使用QtGui.<span style="color:rgb(51,51,51);font-family:verdana, Arial, sans-serif;font-size:14px;line-height:22px;background-color:rgb(241,246,250);">QApplication.processEvents() 可以实现实时显示内容；</span></p>
+<p><span style="color:rgb(51,51,51);font-family:verdana, Arial, sans-serif;font-size:14px;line-height:22px;background-color:rgb(241,246,250);">在一个主函数分段执行的地方，加入QtGui.<span style="color:rgb(51,51,51);font-family:verdana, Arial, sans-serif;font-size:14px;line-height:22px;background-color:rgb(241,246,250);">QApplication.processEvents()
+ 即可</span></span></p>
+<p><span style="color:rgb(51,51,51);font-family:verdana, Arial, sans-serif;font-size:14px;line-height:22px;background-color:rgb(241,246,250);"><span style="color:rgb(51,51,51);font-family:verdana, Arial, sans-serif;font-size:14px;line-height:22px;background-color:rgb(241,246,250);"><br /></span></span></p>
+<p><span style="color:rgb(51,51,51);font-family:verdana, Arial, sans-serif;font-size:14px;line-height:22px;background-color:rgb(241,246,250);"><span style="color:rgb(51,51,51);font-family:verdana, Arial, sans-serif;font-size:14px;line-height:22px;background-color:rgb(241,246,250);">参考内容源于：</span></span></p>
+<p><span style="color:rgb(51,51,51);font-family:verdana, Arial, sans-serif;font-size:14px;line-height:22px;background-color:rgb(241,246,250);"><span style="color:rgb(51,51,51);font-family:verdana, Arial, sans-serif;font-size:14px;line-height:22px;background-color:rgb(241,246,250);"><a href="http://www.netfoucs.com/adream307/article/details/6308997">http://www.netfoucs.com/adream307/article/details/6308997</a><br /></span></span></p>
+<p><span style="color:rgb(51,51,51);font-family:verdana, Arial, sans-serif;font-size:14px;line-height:22px;background-color:rgb(241,246,250);"><br /></span></p>
+<p><span style="color:rgb(51,51,51);font-family:verdana, Arial, sans-serif;font-size:14px;line-height:22px;background-color:rgb(241,246,250);"></span></p>
+<h2 style="margin:0px;padding:0px;list-style:none;font-size:20px;font-family:'微软雅黑', '宋体';line-height:50px;color:rgb(51,51,51);background-color:rgb(241,246,250);">
+<a href="http://www.netfoucs.com/adream307/article/details/6308997" style="color:rgb(0,68,153);text-decoration:none;">pyQt4实时显示--QApplication.processEvents</a></h2>
+<h4 style="margin:0px 0px 20px;padding:0px;list-style:none;font-weight:normal;color:rgb(119,119,119);font-family:verdana, Arial, sans-serif;background-color:rgb(241,246,250);">
+分类： <a href="http://www.netfoucs.com/adream307/article/category/747620" style="color:rgb(0,68,153);text-decoration:none;">python</a> |2011-04-08 11:14 |178人阅读</h4>
+<div id="BAIDU_DUP_wrapper_803134_0" style="color:rgb(51,51,51);font-family:verdana, Arial, sans-serif;background-color:rgb(241,246,250);">
+</div>
+<ins class="adsbygoogle" style="color:rgb(51,51,51);font-family:verdana, Arial, sans-serif;background-color:rgb(241,246,250);display:inline-block;"></ins><ins id="aswift_0_expand" style="display:inline-table;border:none;margin:0px;padding:0px;visibility:visible;background-color:transparent;"></ins><ins id="aswift_0_anchor" style="display:block;border:none;margin:0px;padding:0px;visibility:visible;background-color:transparent;"></ins><span style="color:rgb(51,51,51);font-family:verdana, Arial, sans-serif;background-color:rgb(241,246,250);"></span><span style="color:rgb(51,51,51);font-family:verdana, Arial, sans-serif;background-color:rgb(241,246,250);"></span>
+<div style="color:rgb(51,51,51);font-family:verdana, Arial, sans-serif;background-color:rgb(241,246,250);">
+<p style="margin-top:0px;margin-bottom:15px;padding-top:0px;padding-bottom:0px;list-style:none;font-size:14px;line-height:22px;">
+# -*- coding: utf-8 -*- <br style="overflow:hidden;" />
+from PyQt4.QtCore import * <br style="overflow:hidden;" />
+from PyQt4.QtGui import * <br style="overflow:hidden;" />
+import sys <br style="overflow:hidden;" />
+import os <br style="overflow:hidden;" />
+import time</p>
+<p style="margin-top:0px;margin-bottom:15px;padding-top:0px;padding-bottom:0px;list-style:none;font-size:14px;line-height:22px;">
+class Test(QDialog): <br style="overflow:hidden;" />
+    def __init__(self,parent=None): <br style="overflow:hidden;" />
+        super(Test,self).__init__(parent) <br style="overflow:hidden;" />
+        self.listFile=QListWidget() <br style="overflow:hidden;" />
+        self.btnStart=QPushButton('Start') <br style="overflow:hidden;" />
+        layout=QGridLayout(self) <br style="overflow:hidden;" />
+        layout.addWidget(self.listFile,0,0,1,2) <br style="overflow:hidden;" />
+        layout.addWidget(self.btnStart,1,1) <br style="overflow:hidden;" />
+        self.connect(self.btnStart,SIGNAL('clicked()'),self.slotAdd) <br style="overflow:hidden;" />
+    def slotAdd(self): <br style="overflow:hidden;" />
+        for n in range(10): <br style="overflow:hidden;" />
+            str_n='File index {0}'.format(n) <br style="overflow:hidden;" />
+            self.listFile.addItem(str_n) <br style="overflow:hidden;" />
+            QApplication.processEvents() <br style="overflow:hidden;" />
+            time.sleep(1) <br style="overflow:hidden;" />
+app=QApplication(sys.argv) <br style="overflow:hidden;" />
+dlg=Test() <br style="overflow:hidden;" />
+dlg.show() <br style="overflow:hidden;" />
+sys.exit(app.exec_())</p>
+</div>
+<br /><p></p>
+                </div>
+                    </div>
+        <script>
+        $(".MathJax").remove();
+        </script>
+    </article>
+      <div class="readall_box csdn-tracking-statistics tracking-click" data-mod="popu_376">
+          <div class="read_more_mask"></div>
+          <a class="btn btn-large btn-gray-fred read_more_btn" target="_self">阅读全文</a>
+      </div>
+      <div class="article_copyright">
+         
+              </div>
+      <ul class="article_collect clearfix csdn-tracking-statistics tracking-click"  data-mod="popu_378">
+          <li class="tit">本文已收录于以下专栏：</li>
+<!--          [startarticlecolumns]-->
+                                <!--          [endarticlecolumns]-->
+      </ul>
+      <div class="edu_promotion" style="margin: 16px 0;display:none;"></div>
+      <div class="comment_box clearfix" id="comments">
+          <div id="comment_form">
+              <div id="commentsbmitarear">
+                              </div>
+          </div>
+      </div>
+      <div class="comment_li_outbox">
+          <div id="comment_list"></div>
+      </div>
+
+      <div class="more_comment">
+          <div id="comment_bar" class="trackgin-ad" data-mod="popu_385"></div>
+      </div>
+
+      <!-- <h3 class="recommend_tit" id="related">相关文章推荐</h3> -->
+      <div class="recommend_list clearfix" id="rasss">
+                                          <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/qingyang1014/article/details/38625821"  target="_blank" strategy="BlogCommendFromBaidu_0">
+                    <dd>
+                        <h2>PyQt4在TextEdit控件中创建右键菜单</h2>
+                        <div class="summary">
+                            今天开发界面遇到一个问题，想将textedit的显示内容及时清空，但是由于系统自带的caidan...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/8/8/3/3_qingyang1014.jpg" alt="qingyang1014" title="qingyang1014"></li>
+                            <li class="user_name">qingyang1014</li>
+                            <li class="time">2014年08月17日 00:23</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>2061</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/whklhhhh/article/details/65738154"  target="_blank" strategy="BlogCommendFromBaidu_1">
+                    <dd>
+                        <h2>170324 PyQt5-TextEdit的滚动效果</h2>
+                        <div class="summary">
+                            1625-5 王子昂 总结《2017年3月24日》 【连续第174天总结】
+A.
+PyQt5 文本框的预览、滚动效果
+B.
+预览效果很简单，只需要在输入框内容变化时发出信号，调取槽来改变预览框...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/0/3/8/3_whklhhhh.jpg" alt="whklhhhh" title="whklhhhh"></li>
+                            <li class="user_name">whklhhhh</li>
+                            <li class="time">2017年03月25日 02:19</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>2053</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                          <dl class="">
+            <script>
+            (function() {
+              var s = "_" + Math.random().toString(36).slice(2);
+              document.write('<div id="' + s + '"></div>');
+              (window.slotbydup=window.slotbydup || []).push({
+                id: '4765209',
+                container: s,
+                size: '808,120',
+                display: 'inlay-fix'
+              });
+            })();
+            </script>
+          </dl>
+                                        <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/baidu_34045013/article/details/52134523"  target="_blank" strategy="BlogCommendFromBaidu_2">
+                    <dd>
+                        <h2>PyQt5教程(五)——对话框</h2>
+                        <div class="summary">
+                            对话框或对话窗口是现代GUI程序不可或缺的一部分。对话的定义是两个或多个人之间的交谈。在计算机程序中对话是与程序进行“交谈”的窗体。对话框用于输入数据、修改数据、更改程序设置等。QInputDialo...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/0/6/A/3_baidu_34045013.jpg" alt="baidu_34045013" title="baidu_34045013"></li>
+                            <li class="user_name">baidu_34045013</li>
+                            <li class="time">2016年08月06日 09:52</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>5304</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/tax10240809163com/article/details/50497828"  target="_blank" strategy="BlogCommendFromBaidu_3">
+                    <dd>
+                        <h2>QT TextEdit的一些总结</h2>
+                        <div class="summary">
+                            1.HTML形式操纵Qtextedit　　QTextEdit支持HTML的一个子集, 所以对于简单的使用, 可以直接插入HTML代码 m_ui.textEdit->append("");　　通过插入h...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/5/A/6/3_tax10240809163com.jpg" alt="tax10240809163com" title="tax10240809163com"></li>
+                            <li class="user_name">tax10240809163com</li>
+                            <li class="time">2016年01月11日 16:17</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1300</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/xiaoyangyang20/article/details/54669472"  target="_blank" strategy="BlogCommendFromBaidu_4">
+                    <dd>
+                        <h2>python3+PyQt5 实现多文档界面（MDI）</h2>
+                        <div class="summary">
+                            本文是对《Python Qt GUI快速编程》的第9章的多文档界面的例子texteditor用Python3+PyQt5进行改写。...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/A/3/5/3_xiaoyangyang20.jpg" alt="xiaoyangyang20" title="xiaoyangyang20"></li>
+                            <li class="user_name">xiaoyangyang20</li>
+                            <li class="time">2017年01月22日 16:51</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>4258</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/kilvdn/article/details/4077183"  target="_blank" strategy="BlogCommendFromBaidu_5">
+                    <dd>
+                        <h2>使用Eric4+PyQt4制作一个简单的文本编辑器</h2>
+                        <div class="summary">
+                            1. 新建工程。打开Eric4，选择菜单Project->New新建一个叫做PyNotePad的工程，选择好工程所保存的路径后，点OK，就可以了。注：点了OK后还会弹出版本控制器的选择对话框，安装个人...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/5/0/2/3_kilvdn.jpg" alt="kilvdn" title="kilvdn"></li>
+                            <li class="user_name">kilvdn</li>
+                            <li class="time">2009年04月15日 21:38</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>9094</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/pdcxs007/article/details/45095293"  target="_blank" strategy="searchFromBaidu_6">
+                    <dd>
+                        <h2>PyQt5初次体验</h2>
+                        <div class="summary">
+                            今天初次使用了PyQt5，感觉不错。 
+注意的问题是，PyQt5貌似只支持Python 3 。
+碰到的问题记录如下。...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/6/4/7/3_pdcxs007.jpg" alt="pdcxs007" title="pdcxs007"></li>
+                            <li class="user_name">pdcxs007</li>
+                            <li class="time">2015年04月17日 12:06</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>39922</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/Kai_gai/article/details/49559345"  target="_blank" strategy="BlogCommendFromBaidu_7">
+                    <dd>
+                        <h2>PyQt4 学习笔记5之对话框</h2>
+                        <div class="summary">
+                            PyQt4中的对话框单击此处查看原文。对话框窗口或对话框时现代GUI程序不可或缺的一部分。对话框被定义为两个或两个以上的人之间的谈话。在计算机应用程序中，对话框用于和应用程序“谈话”。一个对话框可以用...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/1/7/C/3_kai_gai.jpg" alt="Kai_gai" title="Kai_gai"></li>
+                            <li class="user_name">Kai_gai</li>
+                            <li class="time">2015年11月01日 16:20</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>3165</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/hongxingabc/article/details/52223364"  target="_blank" strategy="BlogCommendFromBaidu_8">
+                    <dd>
+                        <h2>QTextEdit实时显示运行结果</h2>
+                        <div class="summary">
+                            最近用Qt界面程序用来处理序列图像的目标检测，每次输入一组序列图，检测结果（每一帧图像上目标的个数，对应坐标，置信度等）除了以图像形式实时显示意外，还需要以文本形式显示在界面上。
+我采用了QText...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/A/A/0/3_hongxingabc.jpg" alt="hongxingabc" title="hongxingabc"></li>
+                            <li class="user_name">hongxingabc</li>
+                            <li class="time">2016年08月16日 20:08</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>3975</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/Graduate_2017/article/details/70917461"  target="_blank" strategy="BlogCommendFromBaidu_9">
+                    <dd>
+                        <h2>pyqt4原始例程--将文本框LineEdit的内容输出并打印</h2>
+                        <div class="summary">
+                            参考文章：pyQt 写的小窗口 获取文本框内容 - 荒凉的废墟的日志 - 网易博客
+
+http://huangliangfeixu.blog.163.com/blog/static/189747062...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/A/C/7/3_graduate_2017.jpg" alt="Graduate_2017" title="Graduate_2017"></li>
+                            <li class="user_name">Graduate_2017</li>
+                            <li class="time">2017年04月28日 15:56</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>4555</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                              </div>
+  </main>
+<aside>
+    <div class="right_box user_info">
+    <dl class="inf_bar clearfix">
+        <dt class="csdn-tracking-statistics tracking-click" data-mod="popu_381">
+                <a href="https://blog.csdn.net/qingyang1014" target="_blank">
+                    <img src="https://avatar.csdn.net/8/8/3/3_qingyang1014.jpg" class="avatar_pic">
+        </a>
+      </dt><dd>
+            <h3 class="csdn-tracking-statistics tracking-click"  data-mod="popu_380"><a href="https://blog.csdn.net/qingyang1014" target="_blank" id="uid">qingyang1014</a></h3>
+            <div class="medals" title="">
+                      </div>
+                    </dd>
+    </dl>
+    <div class="inf_number_box clearfix">
+        <dl title="34">
+            <dt>原创</dt>
+            <dd>34</dd>
+        </dl>
+        <dl title="7">
+            <dt>粉丝</dt>
+            <dd id='fan'>7</dd>
+        </dl>
+        <dl title="0">
+            <dt>喜欢</dt>
+            <dd>0</dd>
+        </dl>
+        <dl title="1">
+          <dt>评论</dt>
+          <dd>1</dd>
+        </dl>
+    </div>
+
+</div>
+<div class="interflow clearfix">
+      <div class="grade gradeAndbadge gradewidths">
+      <span>等级：</span>
+      <div>
+        <a href="https://blog.csdn.net/home/help.html#level" title="3级,点击查看等级说明" target="_blank">
+          <img class="grade-img" src="https://csdnimg.cn/jifen/images/xunzhang/jianzhang/blog3.png" alt="3级,点击查看等级说明">
+        </a>
+      </div>
+    </div>
+    <div class="gradeAndbadge gradewidths" title="48467">
+        <span>访问量：</span>
+        <span class="num odd-overhidden">4万+</span>
+    </div>
+
+    <div class="gradeAndbadge gradewidths" title="872">
+      <span>积分：</span>
+      <span  class="num odd-overhidden">872</span>
+    </div>
+    <div class="gradeAndbadge gradewidths" title="58298">
+        <span>排名：</span>
+        <span class="num odd-overhidden">5万+</span>
+    </div>
+
+</div>
+<script type="text/javascript">
+  // 判断并设置用户名位置，没有博客专家与关注按钮时，用户名居中
+  $medals_children = $('.medals').children().length;
+  $span_add_follow = $('#span_add_follow').length;
+  if($medals_children === 0 && $span_add_follow === 0){
+    $('.inf_bar dd').css('vertical-align','10px')
+  }
+</script>          <div class="extension_other csdn-tracking-statistics tracking-click" data-mod="popu_389">
+          <!--u3032528-->
+        <div class="flashrecommend">
+                        <script type="text/javascript" src="//cee1.iteye.com/bwocoltly.js"></script>
+                    </div>
+      </div>
+            <div class="writings">
+      <div class="public_signal clearfix">
+        <h3>博主最新文章</h3>
+        <a href="https://blog.csdn.net/qingyang1014" target="_blank" class="more"><span>更多文章</span></a>
+      </div>
+        <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/qingyang1014/article/details/41854907" target="_blank">handbook-fedora</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/qingyang1014/article/details/40560693" target="_blank">java编译遇到的问题</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/qingyang1014/article/details/40534971" target="_blank">关于智能卡的调查研究资料</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/qingyang1014/article/details/40211673" target="_blank">android传感器类别</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/qingyang1014/article/details/39528975" target="_blank">lettcode:twosum</a>
+            </li>
+                    </ul>
+    </div>
+                <div class="user-hotArticle sort ClassSort">
+            <h3>文章分类</h3>
+            <ul class="hotArticle-list sort-list ClassSort-list">
+                                    <li class="clearfix">
+                        <a href="https://blog.csdn.net/qingyang1014/article/category/2387837" class="odd-overhidden floatL">开源夏令营</a>
+                        <div class="read list-left floatR"><span>42篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="https://blog.csdn.net/qingyang1014/article/category/2387841" class="odd-overhidden floatL">c/c++</a>
+                        <div class="read list-left floatR"><span>1篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="https://blog.csdn.net/qingyang1014/article/category/2387843" class="odd-overhidden floatL">python</a>
+                        <div class="read list-left floatR"><span>11篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="https://blog.csdn.net/qingyang1014/article/category/2415131" class="odd-overhidden floatL">github</a>
+                        <div class="read list-left floatR"><span>3篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="https://blog.csdn.net/qingyang1014/article/category/2433311" class="odd-overhidden floatL">算法和数据结构</a>
+                        <div class="read list-left floatR"><span>4篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="https://blog.csdn.net/qingyang1014/article/category/2462237" class="odd-overhidden floatL">linux</a>
+                        <div class="read list-left floatR"><span>5篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="https://blog.csdn.net/qingyang1014/article/category/2463987" class="odd-overhidden floatL">android</a>
+                        <div class="read list-left floatR"><span>1篇</span></div>
+                    </li>
+                            </ul>
+            <div class="unfold-btn">
+              <span>展开</span><i class="icon iconfont icon-xiajiantou"></i>
+            </div>
+        </div>
+    <!--    [StartShowSelfColumn]-->
+    <!--    [EndShowSelfColumn]-->
+            <div class="user-hotArticle sort timeSort">
+          <h3>文章存档</h3>
+          <ul class="hotArticle-list timeSort-list">
+                            <li class="clearfix">
+                  <a href="https://blog.csdn.net/qingyang1014/article/month/2014/12" class="odd-overhidden floatL">2014年12月</a>
+                  <div class="read list-left floatR"><span>1篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="https://blog.csdn.net/qingyang1014/article/month/2014/10" class="odd-overhidden floatL">2014年10月</a>
+                  <div class="read list-left floatR"><span>3篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="https://blog.csdn.net/qingyang1014/article/month/2014/09" class="odd-overhidden floatL">2014年9月</a>
+                  <div class="read list-left floatR"><span>9篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="https://blog.csdn.net/qingyang1014/article/month/2014/08" class="odd-overhidden floatL">2014年8月</a>
+                  <div class="read list-left floatR"><span>34篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="https://blog.csdn.net/qingyang1014/article/month/2014/07" class="odd-overhidden floatL">2014年7月</a>
+                  <div class="read list-left floatR"><span>31篇</span></div>
+                </li>
+                      </ul>
+          <div class="unfold-btn">
+            <span>展开</span><i class="icon iconfont icon-xiajiantou"></i>
+          </div>
+        </div>
+            <div class="user-hotArticle">
+        <h3>博主热门文章</h3>
+        <ul class="hotArticle-list csdn-tracking-statistics tracking-click" data-mod="popu_521">
+<!--        [StartHotArticles]-->
+                            <li>
+                    <a href="https://blog.csdn.net/qingyang1014/article/details/38593197">python中.py和.pyw文件的区别</a>
+                    <div class="read list-left"><i class="icon iconfont icon-read"></i><span>3968</span></div>
+                </li>
+                            <li>
+                    <a href="https://blog.csdn.net/qingyang1014/article/details/38628275">如何实时显示内容到TExtEdit控件上</a>
+                    <div class="read list-left"><i class="icon iconfont icon-read"></i><span>3147</span></div>
+                </li>
+                            <li>
+                    <a href="https://blog.csdn.net/qingyang1014/article/details/38435997">python中str.find和 in list的区别使用</a>
+                    <div class="read list-left"><i class="icon iconfont icon-read"></i><span>2661</span></div>
+                </li>
+                            <li>
+                    <a href="https://blog.csdn.net/qingyang1014/article/details/38628527">用guiqwt制作实时波形绘图程序</a>
+                    <div class="read list-left"><i class="icon iconfont icon-read"></i><span>2236</span></div>
+                </li>
+                            <li>
+                    <a href="https://blog.csdn.net/qingyang1014/article/details/38625821">PyQt4在TextEdit控件中创建右键菜单</a>
+                    <div class="read list-left"><i class="icon iconfont icon-read"></i><span>2060</span></div>
+                </li>
+                            <li>
+                    <a href="https://blog.csdn.net/qingyang1014/article/details/38535461">多线程中的确保子线程退出之后 主线程退出</a>
+                    <div class="read list-left"><i class="icon iconfont icon-read"></i><span>1844</span></div>
+                </li>
+                            <li>
+                    <a href="https://blog.csdn.net/qingyang1014/article/details/39083099">pyinstaller跨平台python编译问题总结</a>
+                    <div class="read list-left"><i class="icon iconfont icon-read"></i><span>1615</span></div>
+                </li>
+                            <li>
+                    <a href="https://blog.csdn.net/qingyang1014/article/details/38636721">Python String和PyQt QString的区别(转) http://blog.sina.com.cn/s/blog_4b5039210100h9kp.html</a>
+                    <div class="read list-left"><i class="icon iconfont icon-read"></i><span>1174</span></div>
+                </li>
+                            <li>
+                    <a href="https://blog.csdn.net/qingyang1014/article/details/38664831">PyQT实现菜单中的复制，全选和清空的功能</a>
+                    <div class="read list-left"><i class="icon iconfont icon-read"></i><span>953</span></div>
+                </li>
+                            <li>
+                    <a href="https://blog.csdn.net/qingyang1014/article/details/38544681">尝试使用PyQt4将标准输出重定向</a>
+                    <div class="read list-left"><i class="icon iconfont icon-read"></i><span>893</span></div>
+                </li>
+            <!--        [EndHotArticles]-->
+        </ul>
+    </div>
+    
+<!--    [startcustom]-->
+    <!--    [endcustom]-->
+  <div class="fixRight_box" style="height:256px">
+    <div class="fixRight">
+                    <!--u3163270-->
+                        <script type="text/javascript" src="//cee1.iteye.com/avneunkwb.js"></script>
+                          <div class="persion_article"></div>
+    </div>
+  </div>
+</aside>
+</div>
+
+<div class="left_fixed">
+    <div class="left_show_button">
+        <span>
+          <i class="icon iconfont icon-youjiantou"></i>
+        </span>
+    </div>
+    <ul class="left_menu" id="share_box">
+        <li>
+            <button class="left-fixed-btn btn-like csdn-tracking-statistics tracking-click" data-mod="popu_373" target="_self" title="点赞">
+                <a href="javascript:void(0);" class="iconbox border_red" ><i class="icon iconfont icon-dianzan"></i></a>
+                <a class="txt" href="javascript:void(0);">0</a>
+            </button>
+        </li>
+        <li id="blog_artical_directory">
+            <button class="left-fixed-btn left_menu_btn csdn-tracking-statistics tracking-click" data-mod="popu_372" target="_self" title="目录">
+                <a href="javascript:void(0);" class="iconbox border_black" ><i class="icon iconfont icon-mulu"></i></a>
+            </button>
+        </li>
+        <li class="menu_con">
+            <div class="list_father">
+                <div class="arr_box">
+                    <button class="btn-noborder arr-btn scroll-down  left_scroll_down"><i class="icon iconfont icon-xiajiantou"></i></button>
+                    <button class="btn-noborder arr-btn scroll-up left_scroll_top"><i class="icon iconfont icon-shangjiantou"></i></button>
+                </div>
+                <div class="arr"></div>
+                <div id="csdnBlogDir"></div>
+            </div>
+        </li>
+        <!--        <li>-->
+        <!--            <button class="left-fixed-btn btn-like tracking-ad" data-mod="popu_373" target="_self">-->
+        <!--                <span class="iconbox border_red"><i class="icon iconfont icon-xihuan-"></i></span>-->
+        <!--                <span class="txt">喜欢</span>-->
+        <!--                <span class="untxt">取消喜欢</span>-->
+        <!--            </button>-->
+        <!--        </li>-->
+        <li>
+            <button class="left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_374"  id="com-quick-collect" target="_self" title="收藏">
+                <a href="javascript:void(0);" class="iconbox border_purple" ><i class="icon iconfont icon-shoucang"></i></a>
+            </button>
+        </li>
+        <li>
+            <button class="left-fixed-btn btn-pinglun csdn-tracking-statistics tracking-click" data-mod="popu_544" title="评论">
+                <a href="javascript:void(0);" class="iconbox border_purple" ><i class="icon iconfont icon-pinglun"></i></a>
+            </button>
+        </li>
+        <li class="bdsharebuttonbox csdn-tracking-statistics tracking-click" data-mod="popu_172">
+            <a class="bds_tsina outside left-fixed-btn" data-cmd="tsina" title="分享到新浪微博"></a>
+            <span class="iconbox border_red2"><i class="icon iconfont icon-xinlang"></i></span>
+        </li>
+        <li class="bdsharebuttonbox csdn-tracking-statistics tracking-click" data-mod="popu_172">
+            <a class="bds_weixin outside left-fixed-btn" data-cmd="weixin" title="分享到微信"></a>
+            <span class="iconbox border_green"><i class="icon iconfont icon-weixin"></i></span>
+        </li>
+        <li class="bdsharebuttonbox csdn-tracking-statistics tracking-click" data-mod="popu_172">
+            <a class="bds_qzone outside left-fixed-btn" data-cmd="qzone" title="分享到QQ空间"></a>
+            <span class="iconbox border_blue"><i class="icon iconfont icon-QQ"></i></span>
+        </li>
+        <li id="share_box">
+            
+            <div class="bdsharebuttonbox csdn-tracking-statistics tracking-click" data-mod="popu_172">
+                
+                
+                
+            </div>
+        </li>
+    </ul>
+</div>
+<div id="pop_win"></div>
+<div id="popup_mask"></div>
+<div class="pop_CA_cover" ></div>
+<div class="pop pop_CA" >
+    <div class="CA_header">
+        收藏助手
+        <span class="cancel_icon"  id="fapancle" ></span>
+    </div>
+    <iframe src="" id="collectIframe" frameborder="0" width="100%" height="360"  scrolling="no" ></iframe>
+</div>
+<!--举报-->
+<div id="report_dialog" style="top: 250px; left: 343.5px;"><div id="panel_report">
+    <div class="panel_head">不良信息举报</div>
+    <form method="post" id="frmReport" class="panel_body">
+        <table border="0" cellpadding="0" cellspacing="4" class="pop_table">
+            <tbody><tr><td colspan="2">您举报文章：<a href="https://blog.csdn.net/qingyang1014/article/details/38628275" target="_blank">如何实时显示内容到TExtEdit控件上</a></td></tr>
+            <tr>
+                <th style="width:60px;">举报原因：</th>
+                <td id="panel_reporttype">
+                    <label><input type="radio" class="report_type" id="report_sex" name="report_type" value="1">色情</label>
+                    <label><input type="radio" class="report_type" id="report_Politics" name="report_type" value="2">政治</label>
+                    <label><input type="radio" class="report_type" id="report_copy" name="report_type" value="3">抄袭</label>
+                    <label><input type="radio" class="report_type" id="report_ad" name="report_type" value="4">广告</label>
+                    <label><input type="radio" class="report_type" id="report_want" name="report_type" value="5">招聘</label>
+                    <label><input type="radio" class="report_type" id="report_call" name="report_type" value="6">骂人</label>
+                    <br>
+                    <label><input type="radio" class="report_type" id="report_other" name="report_type" value="7">其他</label>
+                    <input type="text" name="report_other_content" id="report_other_content" maxlength="30" style="display: none;">
+                </td>
+            </tr>
+            <tr id="panel_originalurl" style="display: none;">
+                <th>原文地址：</th>
+                <td>
+                    <input id="originalurl" value="http://" name="originalurl" type="text" style="width: 90%;">
+                </td>
+            </tr>
+            <tr>
+                <th id="sp_reason">原因补充：</th>
+                <td>
+                    <textarea id="report_description" style="width: 300px;" rows="3" name="report_description"></textarea>
+                    <p id="sp_n" style="color:#999;margin:0px;padding:0px;">(最多只允许输入30个字)</p>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input id="btnSubmitReport" name="submit" type="image" align="middle" class="btn_1" src="https://csdnimg.cn/release/phoenix/images/btn_submit.jpg">
+                    <span style="padding-left:20px;"></span>
+                    <img id="btnCloseReportDialog" src="https://csdnimg.cn/release/phoenix/images/btn_cancel.jpg" align="middle">
+                    <div id="error" style="color: Red">
+                    </div>
+                </td>
+            </tr>
+            </tbody></table>
+    </form>
+</div>
+    <script language="javascript" type="text/javascript">
+        var isComment=0;
+        //显示隐藏地址
+        $(function () {
+          console.log("version:phoenix");
+            if(isComment){
+                $("#report_description").attr("disabled",true);
+                $("#sp_n").hide();
+                $("#sp_reason").html("评论内容：");
+            }
+            $(".report_type").click(function () {
+                $("#panel_originalurl,#report_other_content").hide();
+                switch ($(this).val()) {
+                    case '3':
+                        $("#panel_originalurl").show();
+                        $("#originalurl").focus();
+                        break;
+                    case '7':
+                        if(isComment){
+                            $("#report_other_content").show().focus();
+                        }
+                        break;
+                }
+
+            });
+
+            $("#frmReport").submit(function () {
+                if (!currentUserName) {
+
+                    if (confirm("您的操作必须登录，是否登录？")) {
+                        location.href = "https://passport.csdn.net/account/login?from=" + encodeURIComponent(location.href);
+                        return false;
+                    }
+                    return false;
+                }
+
+                var reportType = $("input[name=report_type]:checked").val();
+                if(!reportType){
+                    alert("请选择举报原因！");
+                    return false;
+                }
+                var otherInfo = "";
+                switch (reportType) {
+                    case '3':
+                        otherInfo = $("#originalurl").val();
+                        if (otherInfo == ""||otherInfo=="http://") {
+                            alert("举报抄袭必须提供原创文章地址！");
+                            $("#originalurl").focus();
+                            return false;
+                        } else if(!checkeURL(otherInfo)) {
+                            alert("请输入正确的原创文章地址！");
+                            $("#originalurl").focus();
+                            return false;
+                        }
+                        break;
+                    case '7':
+                        otherInfo = $("#report_other_content").val();
+                        if (isComment && !otherInfo) {
+                            alert("请填写举报的具体原因！");
+                            $("#report_other_content").focus();
+                            return false;
+                        }
+                        if(!isComment){
+                            if(!$("#report_description").val()){
+                                alert("请填写举报的具体原因！");
+                                $("#report_description").focus();
+                                return false;
+                            }
+                        }
+                        break;
+                }
+                if(!isComment){
+                    if($("#report_description").val().length>30){
+                        alert("举报原因最多只允许输入30个字！");
+                        return false;
+                    }
+                }
+	            nowTime = {
+		            year: new Date().getFullYear(),
+		            month: parseInt(new Date().getMonth())+1,
+		            day: new Date().getDate(),
+		            hours: parseInt(new Date().getHours())+1,
+		            minutes: parseInt(new Date().getMinutes())+1,
+		            seconds: parseInt(new Date().getSeconds())+1
+	            };
+	            var data = {
+		            articleId: fileName,
+		            commentId: 0,
+		            reportType: reportType,
+		            originalurl: $("#originalurl").val(),
+		            report_other_content: $("#report_other_content").val(),
+		            report_description: $("#report_description").val(),
+		            currentUserName: currentUserName,
+		            updatetime: nowTime.year+'/'+nowTime.month+'/'+nowTime.day+' '+ nowTime.hours+':'+nowTime.minutes+':'+seconds,
+		            blogUser: username
+	            };
+	            if(!isComment){//如果是举报文章
+		            data.report_other_content = data.report_description;
+		            // data.report_description = "1. 神经网络这是一个常见的神经网络的图：这是一个常见的三层神经网络的基本构成，Layer L1是输入层，Layer L2是隐含层";
+	            }
+
+	            $.post(blog_address + "/common/report?id="+fileName+"&t=2", data, function (data) {
+		            if (data.result == 1){
+			            SetError("感谢您的举报，我们会尽快审核！");
+		            }else{
+			            if (data.content) alert(data.content);
+		            }
+
+	            });
+                return false;
+            });
+
+            $("#btnCloseReportDialog").click(function () {
+                CloseDiv();
+            });
+
+        });
+
+        //提示后关闭方法
+        function SetError(error) {
+            $("#btnCloseReportDialog").trigger("click");
+            alert(error);
+            CloseDiv();
+        }
+
+        //关闭方法
+        function CloseDiv() {
+
+            $.removeMask();
+            $("#report_dialog").hide();
+            return false;
+        }
+
+        //验证url
+        function checkeURL(url){
+            return /^http(s)?:\/\/([\w-]+\.)+[\w-]+/i.test(url);
+        }
+    </script>
+</div>
+<!--  fixme 后期清理掉  -->
+<div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+    <script id="adJs52b5334"></script>
+    <script>document.getElementById("adJs52b5334").src = "https://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+</div>
+<script type="text/javascript" src="https://static-blog.csdn.net/mdeditor/public/res/bower-libs/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config"> 
+    MathJax.Hub.Config({ 
+        "HTML-CSS": { 
+            linebreaks: { automatic: true, width: "94%container" },
+            imageFont: null
+        }
+    });
+</script>
+<!-- <script type="text/javascript" src="https://passport.csdn.net/content/loginbox/login.js"></script> -->
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'https://csdnimg.cn/static/api/js/share.js?v=89860594'];</script>
+<script type="text/javascript" >
+    if($(".article_collect li").length==1){$(".article_collect").hide();}
+    if($(".article_tags li").length==1){$(".article_tags").hide();}
+    $(".edit a").attr("href","https://mp.csdn.net/postedit/"+fileName);
+    $.each($(".edu_li a"),function(){$(this).attr("href",$(this).attr("href").replace("blog7","blog9"))});
+    new CNick('#uid').showNickname();
+
+    if($("#fan").html()=="")
+    {
+	    $("#fan").html(0);
+    }
+</script>
+<script src="https://csdnimg.cn/public/common/append_mark/appendMark.min.js?v=5.00.43" type="text/javascript"></script>
+<script type="text/javascript">
+    appendMark($('.recommend_list').children('a').find('dt'),$('.extension_other'),$('.yd_a_d_feed_cla'))
+</script>
+<script src='https://csdnimg.cn/pubfooter/js/publib_footer-1.0.3.js?v201802051726' data-isfootertrack="false"></script>
+<script src='https://csdnimg.cn/public/common/gotop/js/goTop-v1.0.min.js?v201803151422'></script>
+<script>
+    GoTop({
+        right: 8,
+        hasReport: true,
+        reportFun: function() {
+            $.createMask();
+            var r = blog_address + "/common/report?id=" + fileName + "&t=" + 2;
+            if (3 == 2) {
+                var s = n.parentNode.parentNode.parentNode.getAttribute("floor");
+                r += "&floor=" + s
+            }
+            var i = (document.documentElement.clientHeight - 400) / 2 + (document.documentElement.scrollTop || document.body.scrollTop),
+                a = (document.documentElement.clientWidth - 400) / 2;
+
+            $("#report_dialog").load(r).css({
+                //top: i + "px",
+                top: '20%',
+                left: a
+            }).show()
+        }
+    })
+</script>
+<script src="https://dup.baidustatic.com/js/os.js"></script>
+
+<div id="loginWrap"></div>
+<div id="dlMask"></div>
+</body>

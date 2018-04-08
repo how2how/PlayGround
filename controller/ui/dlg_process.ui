@@ -10,14 +10,31 @@
     <height>500</height>
    </rect>
   </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::CustomContextMenu</enum>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QListView" name="listView"/>
+    <widget class="QListView" name="listView">
+     <property name="contextMenuPolicy">
+      <enum>Qt::CustomContextMenu</enum>
+     </property>
+    </widget>
    </item>
   </layout>
+  <action name="action_kill">
+   <property name="text">
+    <string>结束进程</string>
+   </property>
+  </action>
+  <action name="action_refresh">
+   <property name="text">
+    <string>  刷  新</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

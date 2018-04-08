@@ -29,7 +29,10 @@
     <enum>Qt::Horizontal</enum>
    </property>
    <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
+   </property>
+   <property name="centerButtons">
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -209,7 +212,7 @@
      <string>密码：</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLineEdit" name="git_pass">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -238,7 +241,7 @@
      <string>管理权限Token：</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="git_user">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -267,7 +270,7 @@
      <string>Github平台账户：</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_5">
+   <widget class="QLineEdit" name="token_limit">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -277,7 +280,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_4">
+   <widget class="QLineEdit" name="token_full">
     <property name="geometry">
      <rect>
       <x>120</x>

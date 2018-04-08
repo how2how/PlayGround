@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'dlg_ctlSettings.ui'
 #
-# Created by: PyQt5 UI code generator 5.6
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -16,7 +16,8 @@ class Ui_ctlSettings(object):
         self.buttonBox = QtWidgets.QDialogButtonBox(ctlSettings)
         self.buttonBox.setGeometry(QtCore.QRect(70, 250, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Save)
+        self.buttonBox.setCenterButtons(False)
         self.buttonBox.setObjectName("buttonBox")
         self.label = QtWidgets.QLabel(ctlSettings)
         self.label.setGeometry(QtCore.QRect(20, 50, 71, 41))
@@ -82,9 +83,9 @@ class Ui_ctlSettings(object):
         font.setWeight(75)
         self.label_6.setFont(font)
         self.label_6.setObjectName("label_6")
-        self.lineEdit_3 = QtWidgets.QLineEdit(self.frame_2)
-        self.lineEdit_3.setGeometry(QtCore.QRect(280, 39, 111, 21))
-        self.lineEdit_3.setObjectName("lineEdit_3")
+        self.git_pass = QtWidgets.QLineEdit(self.frame_2)
+        self.git_pass.setGeometry(QtCore.QRect(280, 39, 111, 21))
+        self.git_pass.setObjectName("git_pass")
         self.label_7 = QtWidgets.QLabel(self.frame_2)
         self.label_7.setGeometry(QtCore.QRect(10, 70, 131, 16))
         font = QtGui.QFont()
@@ -92,9 +93,9 @@ class Ui_ctlSettings(object):
         font.setWeight(75)
         self.label_7.setFont(font)
         self.label_7.setObjectName("label_7")
-        self.lineEdit_2 = QtWidgets.QLineEdit(self.frame_2)
-        self.lineEdit_2.setGeometry(QtCore.QRect(120, 39, 101, 21))
-        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.git_user = QtWidgets.QLineEdit(self.frame_2)
+        self.git_user.setGeometry(QtCore.QRect(120, 39, 101, 21))
+        self.git_user.setObjectName("git_user")
         self.label_8 = QtWidgets.QLabel(self.frame_2)
         self.label_8.setGeometry(QtCore.QRect(10, 40, 111, 16))
         font = QtGui.QFont()
@@ -102,12 +103,12 @@ class Ui_ctlSettings(object):
         font.setWeight(75)
         self.label_8.setFont(font)
         self.label_8.setObjectName("label_8")
-        self.lineEdit_5 = QtWidgets.QLineEdit(self.frame_2)
-        self.lineEdit_5.setGeometry(QtCore.QRect(120, 99, 271, 21))
-        self.lineEdit_5.setObjectName("lineEdit_5")
-        self.lineEdit_4 = QtWidgets.QLineEdit(self.frame_2)
-        self.lineEdit_4.setGeometry(QtCore.QRect(120, 69, 271, 21))
-        self.lineEdit_4.setObjectName("lineEdit_4")
+        self.token_limit = QtWidgets.QLineEdit(self.frame_2)
+        self.token_limit.setGeometry(QtCore.QRect(120, 99, 271, 21))
+        self.token_limit.setObjectName("token_limit")
+        self.token_full = QtWidgets.QLineEdit(self.frame_2)
+        self.token_full.setGeometry(QtCore.QRect(120, 69, 271, 21))
+        self.token_full.setObjectName("token_full")
         self.frame.raise_()
         self.buttonBox.raise_()
         self.label.raise_()

@@ -1,0 +1,1303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+<meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="referrer" content="always">
+<link href="https://csdnimg.cn//public/favicon.ico" rel="shortcut icon" />
+<link href="https://blog.csdn.net/hongbin_xu/article/details/79159917"  rel="canonical" />
+<link href="https://blog.csdn.net/hongbin_xu/rss/list" id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" />
+<script src="https://csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="https://dup.baidustatic.com/js/ds.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var CFG={
+        BASE_URL : "https://csdnimg.cn/release/phoenix/",    //当前页面对应的虚拟路径,静态资源对应目录同<base href="">
+        API_URL  : "https://blog.csdn.net/",                 //当前项目默认的后端API地址
+        ROOT_URL  : "https://blog.csdn.net/",          //当前项目根路径, JS跳转
+        STATIC_URL : "https://csdnimg.cn/release/phoenix/",          //本项目静态资源根目录
+        STATIC_GLOBAL_URL : "https://csdnimg.cn/",    //公共静态资源根目录
+        CUR_URL : "https://blog.csdn.net/hongbin_xu/article/details/79159917",
+        SO_URL : "http://so.csdn.net/so/search/s.do"  // 站内搜索路径
+    }
+</script>
+    <title>PYQT中QThread输出到textBrowser - CSDN博客</title>
+    <meta name="keywords" content="PYQT" />
+    <meta name="description" content="问题概述
+
+在PYQT中，有时我们会需要将log信息等实时打印到ui控件上，但是由于PYQT的进程保护机制，我们无法像使用print函数中那样，直接使用就能打印出来信息。所以通常都会发现，PYQT中的UI控件，比如QTextBrowser，使用它的append()函数和print函数同时来打印信息，往往print会将信息实时一点点打印出来，而QTextBrowser则不会，反而会等到这一段程序运行" />
+    <meta name="referrer" content="always">
+    <link href="https://csdnimg.cn/blog/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet"/>
+    <link href="https://csdnimg.cn/release/phoenix/dotnet/css/blog_detail-b723826c92.css" type="text/css" rel="stylesheet" />
+    <link href="https://csdnimg.cn/release/phoenix/bloglist/iconfont/iconfont.css" type="text/css" rel="stylesheet"/>
+    <link href="https://csdnimg.cn/release/phoenix/dotnet/skin/skin-yellow/css/style.css?v=201803221741"  type="text/css" rel="stylesheet" />
+    <script>
+        var username = "hongbin_xu";
+        var _blogger = username;
+        var blog_address = "https://blog.csdn.net/hongbin_xu";
+        var static_host = "https://csdnimg.cn/release/phoenix/";
+        var currentUserName = "";
+        var islock = false;
+        var fileName = "79159917";
+        var commentscount = 0;
+        var curUserFace = "https://avatar.csdn.net/D/4/1/3_.jpg";
+
+        document.domain = "csdn.net";
+        var title="PYQT中QThread输出到textBrowser";
+        window.quickReplyflag = true;
+        var isBole = false;
+        var fasrc="https://my.csdn.net//my/favoriteminiadd?dt=PYQT中QThread输出到textBrowser&u=https://blog.csdn.net/hongbin_xu/article/details/79159917";
+        var baiduKey = "pyqt+qthread%E4%BD%BF%E7%94%A8%E5%AE%9E%E4%BE%8B";
+        var needInsertBaidu = false;
+        var ChannelId = 16;
+    </script>
+      <script src="https://csdnimg.cn/search/baidu_search-1.1.2.js?v=201802071056&autorun=true&install=true&keyword=java"  type="text/javascript"></script>
+      <script src="https://csdnimg.cn/release/phoenix/dotnet/js/blog_detail-ac3b0150e2.js" type="text/javascript"></script>
+    <style type="text/css">
+        .embody{
+            padding:10px 10px 10px;
+            margin:0 -20px;
+            border-bottom:solid 1px #ededed;
+        }
+        .embody_b{
+            margin:0 ;
+            padding:10px 0;
+        }
+        .embody .embody_t,.embody .embody_c{
+            display: inline-block;
+            margin-right:10px;
+        }
+        .embody_t{
+            font-size: 12px;
+            color:#999;
+        }
+        .embody_c{
+            font-size: 12px;
+        }
+        .embody_c img,.embody_c em{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .embody_c img{
+            width:30px;
+            height:30px;
+        }
+        .embody_c em{
+            margin: 0 20px 0 10px;
+            color:#333;
+            font-style: normal;
+        }
+    </style>
+    <style>
+        .MathJax, .MathJax_Message, .MathJax_Preview{
+            display: none
+        }
+    </style>
+</head>
+<body>
+<link rel="stylesheet" href="https://csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+<script id="toolbar-tpl-scriptId" src="https://csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="https://blog.csdn.net/"></script>
+<div id="container">
+    <!--header+navigator-->
+    <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="https://blog.csdn.net/hongbin_xu">hongbin_xu的博客</a>
+            </h2>
+            <h3>
+                新的起点，不忘初心             </h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>
+            <li id="btnContents"><a href="https://blog.csdn.net/hongbin_xu?viewmode=contents"><span
+                    onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="https://csdnimg.cn/release/phoenix/images/ico_list.gif">目录视图</span></a></li>
+            <li id="btnView"><a href="https://blog.csdn.net/hongbin_xu?viewmode=list"><span
+                    onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="https://csdnimg.cn/release/phoenix/images/ico_summary.gif">摘要视图</span></a></li>
+            <li id="btnRss"><a href="https://blog.csdn.net/hongbin_xu/rss/list"><span
+                    onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="https://csdnimg.cn/release/phoenix/images/ico_rss.gif">订阅</span></a></li>
+                    </ul>
+    </div>
+</div>
+    <div id="body">
+        <div id="main">
+            <div class="main">
+               <div class="main">
+    <div class="ad_class">
+    </div>
+    <!--文章详情-->
+    <div id="article_details" class="details">
+        <div class="article_title">
+            <span class="ico ico_type_Original"></span>
+            <h1>
+                <span class="link_title">
+                    <a href="https://blog.csdn.net/hongbin_xu/article/details/79159917">
+                        
+                                                PYQT中QThread输出到textBrowser                    </a>
+                </span>
+            </h1>
+        </div>
+        <div class="article_manage clearfix">
+        <div class="article_l">
+        <span class="link_categories">
+        标签：
+                            <a href="http://so.csdn.net/so/search/s.do?q=PYQT&t=blog" target="_blank">PYQT</a>
+                        </span>
+    </div>
+        <div class="article_r">
+        <span class="link_postdate">2018年01月25日 12:12:07</span>
+        <span class="link_view" title="阅读次数">301人阅读</span>
+        <span class="link_comments" title="评论次数"> <a href="javascript:void(0);" class="btn-pinglun">评论</a>(0)</span>
+        <span class="link_collect csdn-tracking-statistics" data-pid="blog"  data-mod="popu_171">
+            <a href="javascript:void(0);" onclick="javascript:collectArticle('PYQT中QThread输出到textBrowser','79159917');return false;" title="收藏">收藏</a>
+        </span>
+                <span class="link_report">
+            <a href="javascript:void(0);" onclick="javascript:report(79159917, 2);return false;" title="举报">举报</a>
+        </span>
+                    </div>
+</div>
+<script  type="text/javascript">
+    $(function () {
+        try
+        {
+            var lib = eval("("+$("#lib").attr("value")+")");
+            var html = "";
+            if (lib.err == 0) {
+                $.each(lib.data, function (i) {
+                    var obj = lib.data[i];
+                    //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                    html += ' <a href="' + obj.url + '" target="_blank">';
+                    html += ' <img src="' + obj.logo + '">';
+                    html += ' <em><b>' + obj.name + '</b></em>';
+                    html += ' </a>';
+                });
+                if (html != "") {
+                    setTimeout(function () {
+                        $("#lib").html(html);
+                        $("#embody").show();
+                    }, 100);
+                }
+            }
+        } catch (err)
+        { }
+
+    });
+</script>
+                <div class="category clearfix">
+            <div class="category_l">
+                <img src="https://csdnimg.cn/release/phoenix/images/category_icon.jpg">
+                <span>分类：</span>
+            </div>
+            <div class="category_r">
+                                            <label  onclick="GetCategoryArticles('6981011','hongbin_xu','top','79159917');">
+                    <span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">
+                       Python<em>（23）</em>
+                    </span>
+                    <img class="arrow-down" src="https://csdnimg.cn/release/phoenix/images/arrow_triangle _down.jpg" style="display:inline;">
+                    <img class="arrow-up" src="https://csdnimg.cn/release/phoenix/images/arrow_triangle_up.jpg" style="display:none;">
+                    <div class="subItem">
+                        <div class="subItem_t">
+                            <a  href="https://blog.csdn.net/hongbin_xu/article/category/6981011"  target="_blank">作者同类文章</a>
+                            <i class="J_close">X</i>
+                        </div>
+                        <ul class="subItem_l" id="top_6981011"></ul>
+                    </div>
+                </label>
+                                        </div>
+        </div>
+                <div class="bog_copyright">
+                        <p class="copyright_p" >
+                版权声明：本文为博主原创文章，未经博主允许不得转载。                https://blog.csdn.net/hongbin_xu/article/details/79159917            </p>
+                    </div>
+        <div id="article_content" class="article_content csdn-tracking-statistics" data-pid="blog"  data-mod=popu_307  data-dsm = "post" >
+                    <div class="markdown_views">
+                <h1 id="问题概述">问题概述</h1>
+
+<p>在PYQT中，有时我们会需要将log信息等实时打印到ui控件上，但是由于PYQT的进程保护机制，我们无法像使用print函数中那样，直接使用就能打印出来信息。所以通常都会发现，PYQT中的UI控件，比如QTextBrowser，使用它的append()函数和print函数同时来打印信息，往往print会将信息实时一点点打印出来，而QTextBrowser则不会，反而会等到这一段程序运行结束后，一次性把所有信息打印出来。 <br>
+前面的描述有点绕，再简述一下：PYQT中在控件（比如QTextBrowser）上无法像print函数那样实时打印信息，而是会在程序段结束后，一次性全部打印上去。 <br>
+在网上查找资料后，看到了解决方案：<a href="http://bbs.csdn.net/topics/390478497">http://bbs.csdn.net/topics/390478497</a> <br>
+注：那个帖子有点老了，有些程序也许运行不通，我只是根据里面给的自己修改的。</p>
+
+
+
+<h1 id="解决思路">解决思路</h1>
+
+<ol>
+<li>使用QThread创建一个新线程，在线程中定义一个信号trigger，使用emit函数向trigger中“灌水”；</li>
+<li>定义槽函数update_text，将其与信号trigger连接，并接收emit函数送过来的信息（可以是字符串，也可以是int或是double），在槽函数中使用append函数打印出来。</li>
+</ol>
+
+
+
+<h1 id="完整程序">完整程序</h1>
+
+
+
+<pre class="prettyprint"><code class=" hljs python"><span class="hljs-keyword">import</span> sys
+<span class="hljs-keyword">from</span> PyQt4 <span class="hljs-keyword">import</span> QtGui,QtCore
+<span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">import</span> random
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread</span><span class="hljs-params">(QtCore.QThread)</span>:</span>
+    trigger = QtCore.pyqtSignal(str)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, parent=None)</span>:</span>
+        super(MyThread, self).__init__(parent)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run_</span><span class="hljs-params">(self, message)</span>:</span>
+        <span class="hljs-comment">#time.sleep(random.random() * 5)</span>
+        self.trigger.emit(message)
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span><span class="hljs-params">(QtGui.QMainWindow)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, parent=None)</span>:</span>
+        super(Main, self).__init__(parent)
+        self.text_area = QtGui.QTextBrowser()
+        self.thread_button = QtGui.QPushButton(<span class="hljs-string">'Start threads'</span>)
+        self.thread_button.clicked.connect(self.start_threads)
+
+        central_widget = QtGui.QWidget()
+        central_layout = QtGui.QHBoxLayout()
+        central_layout.addWidget(self.text_area)
+        central_layout.addWidget(self.thread_button)
+        central_widget.setLayout(central_layout)
+        self.setCentralWidget(central_widget)
+
+        self.threads = MyThread(self)
+        self.threads.trigger.connect(self.update_text)
+
+        self.thread_no = <span class="hljs-number">0</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">start_threads</span><span class="hljs-params">(self)</span>:</span>
+        self.thread_no += <span class="hljs-number">1</span>
+        message = <span class="hljs-string">"cnt:{0}"</span>.format(self.thread_no)
+        self.threads.run_(message)  <span class="hljs-comment"># start the thread</span>
+        print(message)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update_text</span><span class="hljs-params">(self, message)</span>:</span>
+        <span class="hljs-comment"># self.text_area.append('thread # %d finished'%thread_no)</span>
+        <span class="hljs-comment"># print('thread # %d finished'%thread_no)</span>
+
+        self.text_area.append(message)
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:
+    app = QtGui.QApplication(sys.argv)
+
+    mainWindow = Main()
+    mainWindow.show()
+
+    sys.exit(app.exec_())
+
+
+</code></pre>
+
+
+
+<h1 id="简要说明">简要说明</h1>
+
+<p>前面给出了完整程序，这里捡几个要点说明一下：</p>
+
+<hr>
+
+
+
+<pre class="prettyprint"><code class=" hljs fix"><span class="hljs-attribute">trigger </span>=<span class="hljs-string"> QtCore.pyqtSignal(str)</span></code></pre>
+
+<p>创建一个信号trigger，传输字符串类型的数据。</p>
+
+<hr>
+
+
+
+<pre class="prettyprint"><code class=" hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run_</span><span class="hljs-params">(self, message)</span>:</span>
+        self.trigger.emit(message)</code></pre>
+
+<p>在线程类中另外定义的一个函数，主要就是调用trigger的emit函数（向trigger这个通道的入口灌水）。</p>
+
+<hr>
+
+
+
+<pre class="prettyprint"><code class=" hljs avrasm">self<span class="hljs-preprocessor">.threads</span> = MyThread(self)
+self<span class="hljs-preprocessor">.threads</span><span class="hljs-preprocessor">.trigger</span><span class="hljs-preprocessor">.connect</span>(self<span class="hljs-preprocessor">.update</span>_text)</code></pre>
+
+<p>创建线程类的实例，并将信号trigger连接到槽函数update_text。</p>
+
+<hr>
+
+
+
+<pre class="prettyprint"><code class=" hljs python">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update_text</span><span class="hljs-params">(self, message)</span>:</span>
+        <span class="hljs-comment"># self.text_area.append('thread # %d finished'%thread_no)</span>
+        <span class="hljs-comment"># print('thread # %d finished'%thread_no)</span>
+
+        self.text_area.append(message)</code></pre>
+
+<p>定义槽函数update_text，在控件上打印信息（前面定义了信号传输的是str，所以这里直接打印）。</p>
+
+
+
+<h1 id="运行结果">运行结果</h1>
+
+<p><img src="https://img-blog.csdn.net/20180127100426283?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaG9uZ2Jpbl94dQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title=""></p>
+
+<h1 id="后记">后记</h1>
+
+<p>自己正好碰到了这个问题，所以就记录一下，以便以后查阅。</p>
+
+<p><em>吐槽：最近总碰到人在博客上问我为什么程序跑不通之类的问题，我也不知道你的环境是什么样的，少了什么依赖项，请自行解决，我只能尽力保证在自己的电脑上运行通过，能力有限请见谅。</em></p>            </div>
+                        <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/production/markdown_views-ea0013b516.css" />
+                            </div>
+        <div class="readall_box csdn-tracking-statistics tracking-click"  data-pid="blog"  data-mod="popu_596">
+        <div class="read_more_mask"></div>
+            <a class="btn btn-large btn-gray-fred read_more_btn" target="_self">阅读全文</a>
+        </div>
+        <ul class="article_next_prev">
+                                    <li class="prev_article">
+                <span  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian']);location.href='https://blog.csdn.net/hongbin_xu/article/details/79033116';">上一篇</span>
+                <a href="https://blog.csdn.net/hongbin_xu/article/details/79033116" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])">python dlib学习（十一）：眨眼检测</a>
+            </li>
+            
+                                    <li class="next_article">
+                <span  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian']);location.href='https://blog.csdn.net/hongbin_xu/article/details/79179194';">下一篇</span>
+                <a href="https://blog.csdn.net/hongbin_xu/article/details/79179194" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian'])">基于PYQT编写一个人脸识别软件（2）</a>
+            </li>
+                    </ul>
+        <div style="clear:both; height:10px;"></div>
+    </div>
+    <div class="edu_promotion" style="margin: 16px 0;display:none;"></div>
+    <script>
+    $(".MathJax").remove();
+    </script>
+        <!--文章底部广告位-->
+    <div id="article_ad">
+        <!-- 广告位：PC端-博客详情页底部banner-760*90 -->
+        <script type="text/javascript" src="//cee1.iteye.com/pkccmgslc.js"></script>
+    </div>
+    
+    <!--评论区-->
+    <div class="comment_class">
+        <div class="commentform" id="comments"></div>
+        <div id="comment_form">
+
+        </div>
+        <div id="comment_title" class="panel_head">
+            <span class="see_comment">查看评论</span><a name="comments" ></a></div>
+        <div id="comment_list">
+
+        </div>
+        <div id="comment_bar">
+        </div>
+    </div>
+
+    <!--推荐列表-->
+    <div class="recommend_list">
+                                            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/monkeyfx/article/details/58602502"  target="_blank" strategy="BlogCommendFromBaidu_0">
+                    <dd>
+                        <h2>PYQT 子线程调用GUI学习记录---添加文档到textbrowser</h2>
+                        <div class="summary">
+                            PYQT 子线程调用GUI学习记录—添加文档到textbrowser
+在类中定义信号，定义参数类型
+在构造函数中将信号连接到将要执行的函数
+在要调用的函数中使用self._signal.emit(te...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/F/3/E/3_monkeyfx.jpg" alt="monkeyfx" title="monkeyfx"></li>
+                            <li class="user_name">monkeyfx</li>
+                            <li class="time">2017年02月28日 16:14</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>493</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/u010779194/article/details/9075309"  target="_blank" strategy="BlogCommendFromBaidu_1">
+                    <dd>
+                        <h2>QTextBrowser的一些设置</h2>
+                        <div class="summary">
+                            [cpp] view
+ plaincopy
+
+
+
+
+
+
+ui->textBrowser->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysO...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/1/7/6/3_u010779194.jpg" alt="u010779194" title="u010779194"></li>
+                            <li class="user_name">u010779194</li>
+                            <li class="time">2013年06月11日 14:14</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>10868</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                          <dl class="">
+            <script>
+            (function() {
+              var s = "_" + Math.random().toString(36).slice(2);
+              document.write('<div id="' + s + '"></div>');
+              (window.slotbydup=window.slotbydup || []).push({
+                id: '4765209',
+                container: s,
+                size: '808,120',
+                display: 'inlay-fix'
+              });
+            })();
+            </script>
+          </dl>
+                                        <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/PoetMeng/article/details/73466557"  target="_blank" strategy="BlogCommendFromBaidu_3">
+                    <dd>
+                        <h2>Python3.5+PyQt5多线程+itchat实现微信防撤回桌面版代码（二）</h2>
+                        <div class="summary">
+                            weChatThread线程类之前一直不会python多线程，写这个程序的时候，发现不用多线程会陷入无限未响应状态。于是学了半天python多线程，但是在主函数里写的时候，发现一个问题，Ui主线程和工...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/3/A/1/3_poetmeng.jpg" alt="PoetMeng" title="PoetMeng"></li>
+                            <li class="user_name">PoetMeng</li>
+                            <li class="time">2017年06月19日 13:44</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>811</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/hikarisamax/article/details/51195002"  target="_blank" strategy="BlogCommendFromBaidu_4">
+                    <dd>
+                        <h2>用QTextBrowser实现的Web浏览器</h2>
+                        <div class="summary">
+                            用QTextBrowser实现一个最简单的仅支持HTML4子集的Web浏览器                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/3/3/6/3_hikarisamax.jpg" alt="hikarisamax" title="hikarisamax"></li>
+                            <li class="user_name">hikarisamax</li>
+                            <li class="time">2016年04月19日 23:04</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1567</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/xiaoyangyang20/article/details/54631157"  target="_blank" strategy="BlogCommendFromBaidu_5">
+                    <dd>
+                        <h2>python3+PyQt5实现窗口切分条</h2>
+                        <div class="summary">
+                            本文是对《Python Qt GUI快速编程》的第9章的窗口切分条例子News Reader 用Python3+PyQt5进行改写。...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/A/3/5/3_xiaoyangyang20.jpg" alt="xiaoyangyang20" title="xiaoyangyang20"></li>
+                            <li class="user_name">xiaoyangyang20</li>
+                            <li class="time">2017年01月20日 14:31</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1994</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/qq_22238533/article/details/78959038"  target="_blank" strategy="BlogCommendFromBaidu_6">
+                    <dd>
+                        <h2>PyQt5学习入门-5-进阶2-组件学习\API学习</h2>
+                        <div class="summary">
+                            摘要：
+本文将给大家简单介绍一下Qt中常用的几个控件的使用。其实每个控件的使用方法都差不多。具体如何使用更多的时候是需要查找文档API，所以本文也会在介绍使用控件的时候简单的介绍以下文档API的使用。...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/6/1/8/3_qq_22238533.jpg" alt="qq_22238533" title="qq_22238533"></li>
+                            <li class="user_name">qq_22238533</li>
+                            <li class="time">2018年01月03日 12:11</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>272</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/ouening/article/details/79294211"  target="_blank" strategy="BlogCommendFromBaidu_7">
+                    <dd>
+                        <h2>python GUI PyQt5小结</h2>
+                        <div class="summary">
+                            系统：Linux Mint 18.3 xfce 64bit 
+需要软件： 
+（1）Qt5.9.1(使用其中的designer设计师软件来构建ui文件） 
+（2）pygame（播放音乐） 
+（3）pyt...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/8/6/8/3_ouening.jpg" alt="ouening" title="ouening"></li>
+                            <li class="user_name">ouening</li>
+                            <li class="time">2018年02月08日 22:42</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>554</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/changyanxiaoming/article/details/8438016"  target="_blank" strategy="BlogCommendFromBaidu_8">
+                    <dd>
+                        <h2>Qt QTextBrowser的一个小例子</h2>
+                        <div class="summary">
+                            Large applications may require more online help than tooltips, status tips, and "What's This?" help ...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/0/6/1/3_changyanxiaoming.jpg" alt="changyanxiaoming" title="changyanxiaoming"></li>
+                            <li class="user_name">changyanxiaoming</li>
+                            <li class="time">2012年12月26日 11:25</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>4486</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/a6625138/article/details/48491989"  target="_blank" strategy="BlogCommendFromBaidu_9">
+                    <dd>
+                        <h2>Qt里textbrowser的小应用（textbrowser输出变量的值）</h2>
+                        <div class="summary">
+                            一、textbrowser输出变量的值
+
+
+
+
+
+
+
+
+二、在ui中添加一个textedit、textbrowser和一个pushbutton。在textedit中输入文本，点击pushbutton后...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/6/F/2/3_a6625138.jpg" alt="a6625138" title="a6625138"></li>
+                            <li class="user_name">a6625138</li>
+                            <li class="time">2015年09月16日 11:56</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>6770</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                            </div>
+   <div id="ad_bot"></div>
+    <div id="report_dialog"></div>
+    <div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    </div>
+    <div id="popup_mask"></div>
+    <style>
+        #popup_mask
+        {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            left: 0px;
+            top: 0px;
+            opacity: 0.3;
+            filter: alpha(opacity=30);
+            display: none;
+        }
+
+    </style>
+    <div class="clear">
+    </div>
+</div>
+            </div>
+        </div>
+        <div id="side" class="side">
+    <div>
+                    <div id="panel_Profile" class="panel">
+    <ul class="panel_head"><span>个人资料</span></ul>
+    <ul class="panel_body profile">
+        <div class=" user_info">
+    <dl class="inf_bar clearfix">
+        <dt class="csdn-tracking-statistics tracking-click" data-mod="popu_381">
+                <a href="https://blog.csdn.net/hongbin_xu" target="_blank">
+                    <img src="https://avatar.csdn.net/E/3/B/3_hongbin_xu.jpg" class="avatar_pic">
+        </a>
+      </dt><dd>
+            <h3 class="csdn-tracking-statistics tracking-click"  data-mod="popu_380"><a href="https://blog.csdn.net/hongbin_xu" target="_blank" id="uid">hongbin_xu</a></h3>
+            <div class="medals" title="">
+                      </div>
+                    </dd>
+    </dl>
+    <div class="inf_number_box clearfix">
+        <dl title="114">
+            <dt>原创</dt>
+            <dd>114</dd>
+        </dl>
+        <dl title="244">
+            <dt>粉丝</dt>
+            <dd id='fan'>244</dd>
+        </dl>
+        <dl title="72">
+            <dt>喜欢</dt>
+            <dd>72</dd>
+        </dl>
+        <dl title="248">
+          <dt>评论</dt>
+          <dd>248</dd>
+        </dl>
+    </div>
+
+</div>
+<div class="interflow clearfix">
+      <div class="badge gradeAndbadge">
+        <div>
+                        <img src='https://csdnimg.cn/jifen/images/xunzhang/xunzhang/zhuanlandaren.png' alt='专栏达人'>
+                                    <img src='https://csdnimg.cn/jifen/images/xunzhang/xunzhang/chizhiyiheng.png' alt='持之以恒'>
+                                            </div>
+    </div>
+      <div class="grade gradeAndbadge gradewidths">
+      <span>等级：</span>
+      <div>
+        <a href="https://blog.csdn.net/home/help.html#level" title="5级,点击查看等级说明" target="_blank">
+          <img class="grade-img" src="https://csdnimg.cn/jifen/images/xunzhang/jianzhang/blog5.png" alt="5级,点击查看等级说明">
+        </a>
+      </div>
+    </div>
+    <div class="gradeAndbadge gradewidths" title="155054">
+        <span>访问量：</span>
+        <span class="num odd-overhidden">15万+</span>
+    </div>
+
+    <div class="gradeAndbadge gradewidths" title="2839">
+      <span>积分：</span>
+      <span  class="num odd-overhidden">2839</span>
+    </div>
+    <div class="gradeAndbadge gradewidths" title="15473">
+        <span>排名：</span>
+        <span class="num odd-overhidden">1万+</span>
+    </div>
+
+</div>
+<script type="text/javascript">
+  // 判断并设置用户名位置，没有博客专家与关注按钮时，用户名居中
+  $medals_children = $('.medals').children().length;
+  $span_add_follow = $('#span_add_follow').length;
+  if($medals_children === 0 && $span_add_follow === 0){
+    $('.inf_bar dd').css('vertical-align','10px')
+  }
+</script>    </ul>
+</div>
+
+                            <div id="homepageArticles" class="panel csdn-tracking-statistics" data-pid="blog" data-mod="popu_4" style="height:250px;">
+    <div id="cpro_u2734133" style="text-align:center;">
+        <!-- 投放代码 -->
+        <script type="text/javascript" src="//cee1.iteye.com/lgyyovfyh.js"></script>
+    </div>
+</div>
+                                <div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body" class="form_search">
+        <form id="frmSearch" class="form_search csdn-tracking-statistics" data-pid="blog" target="_blank" data-mod="popu_306">
+            <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"/></span>
+            <input id="btnSubmit" type="button" value="搜索" title="search in blog"/>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").unbind("click");
+        $("#btnSubmit").click(function () {
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+        function search() {
+            if ($("#inputSearch").val() == "") {
+                alert("请录入搜索关键词！");
+                return false;
+            }
+            var url = CFG.SO_URL + "?q=" + encodeURIComponent($("#inputSearch").val())+'&t=blog&u='+username;
+            // window.location.href = url;
+            window.open(url)
+        }
+    });
+</script>
+
+                                <div id="panel_Category" class="panel">
+    <ul class="panel_head">
+        <span>博客专栏</span>
+    </ul>
+    <ul class="panel_body" id="sp_column">
+                <table cellpadding="0" cellspacing="0">
+                        <tr>
+                <td style="padding:10px 10px 0 0;">
+                	<a href="https://blog.csdn.net/column/details/18527.html" target="_blank">
+                        <img src="https://img-blog.csdn.net/column" style="width:75px;height:75px;" />
+                    </a>
+                </td>
+                <td style="padding:10px 0; vertical-align:top;">
+                    <a href="https://blog.csdn.net/column/details/18527.html" target="_blank">Python dlib学习</a>
+                    <p>文章：12篇</p>
+                    <span>阅读：38090</span>
+                </td>
+            </tr>
+                        <tr>
+                <td style="padding:10px 10px 0 0;">
+                	<a href="https://blog.csdn.net/column/details/21127.html" target="_blank">
+                        <img src="//img-blog.csdn.net/column" style="width:75px;height:75px;" />
+                    </a>
+                </td>
+                <td style="padding:10px 0; vertical-align:top;">
+                    <a href="https://blog.csdn.net/column/details/21127.html" target="_blank">数字图像处理学习</a>
+                    <p>文章：23篇</p>
+                    <span>阅读：17230</span>
+                </td>
+            </tr>
+                    </table>
+            </ul>
+</div>
+
+                                <div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>文章分类</span></ul>
+    <ul class="panel_body">
+                        <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/category/6905167" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                acm刷题            </a>
+            <span>(3)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/category/6981011" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                Python            </a>
+            <span>(24)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/category/6936122" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                OpenCV            </a>
+            <span>(22)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/category/6704610" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                STM32            </a>
+            <span>(4)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/category/6733656" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                四旋翼无人机            </a>
+            <span>(4)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/category/6763414" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                zedboard            </a>
+            <span>(10)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/category/6836877" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                verilog            </a>
+            <span>(1)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/category/6836866" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                linux            </a>
+            <span>(6)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/category/6852552" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                机器学习            </a>
+            <span>(25)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/category/6877323" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                数字图像实验            </a>
+            <span>(23)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/category/7063698" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                图像处理            </a>
+            <span>(22)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/category/7034465" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                caffe            </a>
+            <span>(17)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/category/7203583" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                杂谈            </a>
+            <span>(1)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/category/7323091" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                deeplearning.ai课程作业            </a>
+            <span>(17)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/category/7349647" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                PCL点云库学习            </a>
+            <span>(1)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/category/7372042" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                三维重建            </a>
+            <span>(5)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/category/7392642" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                论文阅读            </a>
+            <span>(1)</span>
+        </li>
+                    </ul>
+</div>
+
+                                <div id="panel_Archive" class="panel">
+    <ul class="panel_head"><span>文章存档</span></ul>
+    <ul class="panel_body">
+        <div id="archive_list">
+                        <!--归档统计-->
+            <li>
+               <a href="https://blog.csdn.net/hongbin_xu/article/month/2018/04">2018年4月</a>
+               <span>(4)</span>
+            </li>
+                        <!--归档统计-->
+            <li>
+               <a href="https://blog.csdn.net/hongbin_xu/article/month/2018/03">2018年3月</a>
+               <span>(6)</span>
+            </li>
+                        <!--归档统计-->
+            <li>
+               <a href="https://blog.csdn.net/hongbin_xu/article/month/2018/02">2018年2月</a>
+               <span>(8)</span>
+            </li>
+                        <!--归档统计-->
+            <li>
+               <a href="https://blog.csdn.net/hongbin_xu/article/month/2018/01">2018年1月</a>
+               <span>(8)</span>
+            </li>
+                        <!--归档统计-->
+            <li>
+               <a href="https://blog.csdn.net/hongbin_xu/article/month/2017/12">2017年12月</a>
+               <span>(21)</span>
+            </li>
+                        <!--归档统计-->
+            <li>
+               <a href="https://blog.csdn.net/hongbin_xu/article/month/2017/11">2017年11月</a>
+               <span>(9)</span>
+            </li>
+                        <!--归档统计-->
+            <li>
+               <a href="https://blog.csdn.net/hongbin_xu/article/month/2017/10">2017年10月</a>
+               <span>(13)</span>
+            </li>
+                        <!--归档统计-->
+            <li>
+               <a href="https://blog.csdn.net/hongbin_xu/article/month/2017/08">2017年8月</a>
+               <span>(6)</span>
+            </li>
+                        <!--归档统计-->
+            <li>
+               <a href="https://blog.csdn.net/hongbin_xu/article/month/2017/07">2017年7月</a>
+               <span>(18)</span>
+            </li>
+                        <!--归档统计-->
+            <li>
+               <a href="https://blog.csdn.net/hongbin_xu/article/month/2017/06">2017年6月</a>
+               <span>(3)</span>
+            </li>
+                        <!--归档统计-->
+            <li>
+               <a href="https://blog.csdn.net/hongbin_xu/article/month/2017/05">2017年5月</a>
+               <span>(17)</span>
+            </li>
+                        <!--归档统计-->
+            <li>
+               <a href="https://blog.csdn.net/hongbin_xu/article/month/2017/04">2017年4月</a>
+               <span>(8)</span>
+            </li>
+                        <!--归档统计-->
+            <li>
+               <a href="https://blog.csdn.net/hongbin_xu/article/month/2017/03">2017年3月</a>
+               <span>(4)</span>
+            </li>
+                        <!--归档统计-->
+            <li>
+               <a href="https://blog.csdn.net/hongbin_xu/article/month/2017/02">2017年2月</a>
+               <span>(3)</span>
+            </li>
+                        <!--归档统计-->
+            <li>
+               <a href="https://blog.csdn.net/hongbin_xu/article/month/2017/01">2017年1月</a>
+               <span>(1)</span>
+            </li>
+                    </div>
+    </ul>
+</div>
+
+                                <div id="hotarticls" class="panel csdn-tracking-statistics" data-pid="blog" data-mod="popu_340">
+    <ul class="panel_head"><span>阅读排行</span></ul>
+    <ul class="panel_body itemlist">
+                        <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/76284134" title="应用一个基于Python的开源人脸识别库，face_recognition">
+                应用一个基于Python的开源人脸识别库，face_recognition            </a>
+            <span>(19928)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/73177748" title="Ubuntu14.04下FTP服务器的搭建配置">
+                Ubuntu14.04下FTP服务器的搭建配置            </a>
+            <span>(8632)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/54911339" title="STM32驱动OV7725摄像头颜色识别">
+                STM32驱动OV7725摄像头颜色识别            </a>
+            <span>(6910)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/74981819" title="调用face++平台api进行人脸识别">
+                调用face++平台api进行人脸识别            </a>
+            <span>(4837)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/56846490" title="四旋翼姿态解算——互补滤波算法及理论推导">
+                四旋翼姿态解算——互补滤波算法及理论推导            </a>
+            <span>(4352)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/59110226" title="四旋翼姿态解算——互补滤波法补充（融合磁力计）">
+                四旋翼姿态解算——互补滤波法补充（融合磁力计）            </a>
+            <span>(4079)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/74203215" title="OpenCV学习记录（二）：自己训练haar特征的adaboost分类器进行人脸识别">
+                OpenCV学习记录（二）：自己训练haar特征的adaboost分类器进行人脸识别            </a>
+            <span>(3961)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/77278329" title="caffe学习（七）：使用py-faster-rcnn来训练voc2007数据集（Ubuntu）">
+                caffe学习（七）：使用py-faster-rcnn来训练voc2007数据集（Ubuntu）            </a>
+            <span>(3826)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/73656096" title="数字图像处理：基于MATLAB的车牌识别项目">
+                数字图像处理：基于MATLAB的车牌识别项目            </a>
+            <span>(3668)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/78390982" title="python dlib学习（五）：比对人脸">
+                python dlib学习（五）：比对人脸            </a>
+            <span>(3310)</span>
+        </li>
+                    </ul>
+</div>
+
+                                <div id="newcomments" class="panel">
+    <ul class="panel_head"><span>最新评论</span></ul>
+    <ul class="panel_body itemlist">
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/76284134#comments">应用一个基于Python的开源人脸...</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/hongbin_xu" class="user_name">hongbin_xu</a>:
+                [reply]qq_36373127[/reply]
+你的dlib是编译安装的还是pip直接装的，...            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/76284134#comments">应用一个基于Python的开源人脸...</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/qq_36373127" class="user_name">qq_36373127</a>:
+                [reply]hongbin_xu[/reply]
+请问这样是否能够确认是dlib的问题？            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/76284134#comments">应用一个基于Python的开源人脸...</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/qq_36373127" class="user_name">qq_36373127</a>:
+                [reply]hongbin_xu[/reply]
+感谢楼主提醒 我在shell中  import...            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/76284134#comments">应用一个基于Python的开源人脸...</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/hongbin_xu" class="user_name">hongbin_xu</a>:
+                [reply]qq_36373127[/reply]
+不好意思，我在Ubuntu16.04下安装d...            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/76284134#comments">应用一个基于Python的开源人脸...</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/qq_36373127" class="user_name">qq_36373127</a>:
+                博主  感谢您的这篇文章  但是我在参考的时候 发现了一个问题    我用ubuntu16.04 ...            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/73656096#comments">数字图像处理：基于MATLAB的车...</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/qq_34650584" class="user_name">qq_34650584</a>:
+                [reply]hongbin_xu[/reply]博主能把代码发我吗805316381@qq.co...            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/73656096#comments">数字图像处理：基于MATLAB的车...</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/qq_34650584" class="user_name">qq_34650584</a>:
+                可以上传到github让我免费下载吗            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/76377238#comments">开源车牌识别项目，OpenALPR</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/djstavaV" class="user_name">djstavaV</a>:
+                有玩过中国的车牌吗?            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/74981819#comments">调用face++平台api进行人脸...</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/Dorics" class="user_name">Dorics</a>:
+                [reply]hongbin_xu[/reply]
+谢谢楼主，我换成了opencv检测。这个api...            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/hongbin_xu/article/details/77278329#comments">caffe学习（七）：使用py-f...</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/mieleizhi0522" class="user_name">mieleizhi0522</a>:
+                [reply]qq_37553011[/reply]
+我已经转用TensorFlow了            </p>
+        </li>
+            </ul>
+</div>
+
+                            <div id="nav_show_top_stop" class="clearfix" style="z-index:1000;width:300px;">
+                          <div id="cpro_u3031286" class="csdn-tracking-statistics" data-pid="blog" data-view="true" data-mod="ad_popu_189" data-mtp="63"
+                    data-order="40" data-con="ad_content_1259" style="text-align:center;background-color:#fff;">
+                   <!-- 投放代码 -->
+                   <script type="text/javascript" src="//cee1.iteye.com/mhzzpwgzj.js"></script>
+               </div>
+                        <div class="persion_article"></div>
+        </div>
+        <script type="text/javascript">
+            var naviga_offsetTop;
+            $(function(){
+                resetleftTop();
+                $(window).scroll(function(){
+                    var scrollTop = $(document).scrollTop();
+
+                    if (scrollTop > naviga_offsetTop) {
+                        jQuery("#nav_show_top_stop").css({"position": "fixed"});
+                        jQuery("#nav_show_top_stop").css({"top": "2px"});
+                    } else {
+                        jQuery("#nav_show_top_stop").css({"position": "static"});
+                    }
+                });
+            });
+
+            function resetleftTop(){
+                naviga_offsetTop = $("#nav_show_top_stop").position().top;
+            }
+
+        </script>
+    </div>
+    <div class="clear"></div>
+</div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="left_fixed">
+  <div class="left_show_button">
+    <span>
+      <i class="icon iconfont icon-youjiantou"></i>
+    </span>
+</div>
+
+    <ul class="left_menu" id="share_box">
+        <li>
+            <button class="left-fixed-btn btn-like csdn-tracking-statistics tracking-click" data-mod="popu_373" target="_self" title="点赞">
+                <a href="javascript:void(0);" class="iconbox border_red" ><i class="icon iconfont icon-dianzan"></i></a>
+                <a class="txt" href="javascript:void(0);">0</a>
+            </button>
+        </li>
+        <li>
+            <button class="left-fixed-btn csdn-tracking-statistics tracking-click btn-collect" data-mod="popu_374"  target="_self" title="收藏">
+                <a href="javascript:void(0);" class="iconbox border_purple" ><i class="icon iconfont icon-shoucang"></i></a>
+            </button>
+        </li>
+        <li>
+            <button class="left-fixed-btn btn-pinglun csdn-tracking-statistics tracking-click" data-mod="popu_544" title="评论">
+            <a href="javascript:void(0);" class="iconbox border_purple" ><i class="icon iconfont icon-pinglun"></i></a>
+            </button>
+        </li>
+        <li class="bdsharebuttonbox csdn-tracking-statistics tracking-click" data-mod="popu_172">
+            <a class="bds_tsina outside left-fixed-btn" data-cmd="tsina" title="分享到新浪微博"></a>
+            <span class="iconbox border_red2"><i class="icon iconfont icon-xinlang"></i></span>
+        </li>
+        <li class="bdsharebuttonbox csdn-tracking-statistics tracking-click" data-mod="popu_172">
+            <a class="bds_weixin outside left-fixed-btn" data-cmd="weixin" title="分享到微信"></a>
+            <span class="iconbox border_green"><i class="icon iconfont icon-weixin"></i></span>
+        </li>
+        <li class="bdsharebuttonbox csdn-tracking-statistics tracking-click" data-mod="popu_172">
+            <a class="bds_qzone outside left-fixed-btn" data-cmd="qzone" title="分享到QQ空间"></a>
+            <span class="iconbox border_blue"><i class="icon iconfont icon-QQ"></i></span>
+        </li>
+    </ul>
+</div>
+<div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+    <script id="adJs52b5334"></script>
+    <script>document.getElementById("adJs52b5334").src = "https://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+</div>
+<script src="https://csdnimg.cn/public/common/append_mark/appendMark.min.js?v=5.00.43" type="text/javascript"></script>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'https://csdnimg.cn/static/api/js/share.js?v=89860594'];</script>
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n;
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));
+                            }
+                        }
+                    });
+                }
+            });
+
+        },200);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+
+    });
+
+    appendMark($('.recommend_list').children('a').find('dt'),$('.extension_other'));
+
+    $(function () {
+        $('pre.prettyprint code').each(function () {
+            var lines = $(this).text().split('\n').length;
+            var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+            $(this).addClass('has-numbering').parent().append($numbering);
+            for (i = 1; i <= lines; i++) {
+                $numbering.append($('<li/>').text(i));
+            };
+            $numbering.fadeIn(1700);
+        });
+    });
+</script>
+     <!--右下角弹窗广告-->
+<div class="csdn-tracking-statistics" data-pid="blog" data-view="true" data-mod="ad_popu_72" data-mtp="62"
+     data-order="40" data-con="ad_content_2072">
+    <!--右下角弹窗广告-->
+    <script id="popuLayer_js_q" src="//ads.csdn.net/js/popuLayer.js" defer="defer" type="text/javascript"></script>
+    <div id="layerd" style="position: fixed;bottom:0px;right:0px;line-height:0px;display:none;z-index:1000;" >
+        <div class="J_close layer_close"
+             style="background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">
+            关闭
+        </div>
+        <!-- 广告占位容器 -->
+        <div id="cpro_u3026784">
+            <!-- 列表页广告 -->
+                    <!-- 详情页iteye广告-->
+            <script>
+              (function() {
+              var s = "_" + Math.random().toString(36).slice(2);
+              document.write('<div id="' + s + '"></div>');
+              (window.slotbydup=window.slotbydup || []).push({
+              id: '5570104',
+              container: s,
+              size: '250,250',
+              display: 'inlay-fix'
+              });
+              })();
+              </script>
+              <script src="https://dup.baidustatic.com/js/os.js"></script>
+                 </div>
+    </div>
+    <script type='text/javascript'>
+        document.getElementById("popuLayer_js_q").onload = function () {
+            var styObjd = styObj = {width: "250px", "height": parseInt(250) + 28};
+            window.CSDN.Layer.PopuLayer("#layerd", {
+                storageName: "layerd",
+                styleObj: styObjd,
+                total: 50,
+                expoire: 1000 * 60
+            });
+        }
+        $(function(){
+          function resize_show(){
+            var win_width = $(window).width();
+            if(win_width>1680){
+              $('#layerd').fadeIn()
+            }else{
+              $('#layerd').hide()
+            }
+          }
+          resize_show();
+          $(window).resize(resize_show);
+        })
+    </script>
+</div>
+     <div style="display:none;">
+    <img src="" onerror='setTimeout(function(){if(!/(csdn.net|iteye.com|baiducontent.com|googleusercontent.com|360webcache.com|sogoucdn.com|bingj.com|baidu.com)$/.test(window.location.hostname)){window.location. href="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74"}},3000);'>
+</div>
+<script src="https://csdnimg.cn/pubfooter/js/publib_footer-1.0.3.js?20180309"  type="text/javascript"></script>
+<script src="https://csdnimg.cn//release/phoenix/bloglist/iconfont/iconfont.js?v=2017.065"  type="text/javascript" ></script>
+<script src='https://csdnimg.cn/public/common/gotop/js/goTop-v1.0.min.js?v1521531018'></script>
+<script>
+    GoTop({
+        hasReport: true,
+        reportFun: function() {
+            $.createMask();
+            var r = blog_address + "/common/report?id=" + fileName + "&t=" + 2;
+            if (3 == 2) {
+                var s = n.parentNode.parentNode.parentNode.getAttribute("floor");
+                r += "&floor=" + s
+            }
+            var i = (document.documentElement.clientHeight - 400) / 2 + (document.documentElement.scrollTop || document.body.scrollTop),
+                a = (document.documentElement.clientWidth - 400) / 2;
+
+            $("#report_dialog").load(r).css({
+                //top: i + "px",
+                top: '20%',
+                left: a
+            }).show()
+        }
+    })
+</script>
+</body>
+<script src='https://csdnimg.cn/public/common/gotop/js/goTop-v1.0.min.js?v201803151422'></script>
+<script>
+    GoTop({
+        hasReport: true,
+        reportFun: function() {
+            $.createMask();
+            var r = blog_address + "/common/report?id=" + fileName + "&t=" + 2;
+            if (3 == 2) {
+                var s = n.parentNode.parentNode.parentNode.getAttribute("floor");
+                r += "&floor=" + s
+            }
+            var i = (document.documentElement.clientHeight - 400) / 2 + (document.documentElement.scrollTop || document.body.scrollTop),
+                a = (document.documentElement.clientWidth - 400) / 2;
+
+            $("#report_dialog").load(r).css({
+                //top: i + "px",
+                top: '20%',
+                left: a
+            }).show()
+        }
+    })
+</script>
+<script type="text/x-mathjax-config"> 
+    MathJax.Hub.Config({ 
+        "HTML-CSS": { 
+            linebreaks: { automatic: true, width: "94%container" },
+            imageFont: null
+        }
+    });
+</script>
+<script type="text/javascript" src="https://static-blog.csdn.net/mdeditor/public/res/bower-libs/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://dup.baidustatic.com/js/os.js"></script>
+</html>

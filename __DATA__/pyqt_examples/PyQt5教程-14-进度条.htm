@@ -1,0 +1,1121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+<meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="referrer" content="always">
+<link href="https://csdnimg.cn//public/favicon.ico" rel="shortcut icon" />
+<link href="https://blog.csdn.net/weiaitaowang/article/details/52116110"  rel="canonical" />
+<link href="https://blog.csdn.net/weiaitaowang/rss/list" id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" />
+<script src="https://csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="https://dup.baidustatic.com/js/ds.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var CFG={
+        BASE_URL : "https://csdnimg.cn/release/phoenix/",    //当前页面对应的虚拟路径,静态资源对应目录同<base href="">
+        API_URL  : "https://blog.csdn.net/",                 //当前项目默认的后端API地址
+        ROOT_URL  : "https://blog.csdn.net/",          //当前项目根路径, JS跳转
+        STATIC_URL : "https://csdnimg.cn/release/phoenix/",          //本项目静态资源根目录
+        STATIC_GLOBAL_URL : "https://csdnimg.cn/",    //公共静态资源根目录
+        CUR_URL : "https://blog.csdn.net/weiaitaowang/article/details/52116110",
+        SO_URL : "http://so.csdn.net/so/search/s.do"  // 站内搜索路径
+    }
+</script>
+    <title>PyQt5教程-14-进度条 - CSDN博客</title>
+    <meta name="keywords" content="pyqt,程序员" />
+    <meta name="description" content="进度条是，当我们处理冗长的任务时使用的控件。它是以动画的形式让用户知道该任务正在取得进展。该QProgressBar控件提供一个水平或垂直进度条。程序员可以设置进度条的最小值和最大值。默认值是0到99。#!/usr/bin/python3
+# -*- coding: utf-8 -*-&quot;&quot;&quot;
+PyQt5 教程这个例子显示了一个进度条控件。作者：我的世界你曾经来过
+博客：http://blog.csd" />
+    <meta name="referrer" content="always">
+    <link href="https://csdnimg.cn/blog/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet"/>
+    <link href="https://csdnimg.cn/release/phoenix/dotnet/css/blog_detail-b723826c92.css" type="text/css" rel="stylesheet" />
+    <link href="https://csdnimg.cn/release/phoenix/bloglist/iconfont/iconfont.css" type="text/css" rel="stylesheet"/>
+    <link href="https://csdnimg.cn/release/phoenix/dotnet/skin/skin-yellow/css/style.css?v=201803221741"  type="text/css" rel="stylesheet" />
+    <script>
+        var username = "weiaitaowang";
+        var _blogger = username;
+        var blog_address = "https://blog.csdn.net/weiaitaowang";
+        var static_host = "https://csdnimg.cn/release/phoenix/";
+        var currentUserName = "";
+        var islock = false;
+        var fileName = "52116110";
+        var commentscount = 0;
+        var curUserFace = "https://avatar.csdn.net/D/4/1/3_.jpg";
+
+        document.domain = "csdn.net";
+        var title="PyQt5教程-14-进度条";
+        window.quickReplyflag = true;
+        var isBole = false;
+        var fasrc="https://my.csdn.net//my/favoriteminiadd?dt=PyQt5教程-14-进度条&u=https://blog.csdn.net/weiaitaowang/article/details/52116110";
+        var baiduKey = "pyqt5+qprogressbar+%E5%A4%9A%E7%BA%BF%E7%A8%8B";
+        var needInsertBaidu = false;
+        var ChannelId = 16;
+    </script>
+      <script src="https://csdnimg.cn/search/baidu_search-1.1.2.js?v=201802071056&autorun=true&install=true&keyword=java"  type="text/javascript"></script>
+      <script src="https://csdnimg.cn/release/phoenix/dotnet/js/blog_detail-ac3b0150e2.js" type="text/javascript"></script>
+    <style type="text/css">
+        .embody{
+            padding:10px 10px 10px;
+            margin:0 -20px;
+            border-bottom:solid 1px #ededed;
+        }
+        .embody_b{
+            margin:0 ;
+            padding:10px 0;
+        }
+        .embody .embody_t,.embody .embody_c{
+            display: inline-block;
+            margin-right:10px;
+        }
+        .embody_t{
+            font-size: 12px;
+            color:#999;
+        }
+        .embody_c{
+            font-size: 12px;
+        }
+        .embody_c img,.embody_c em{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .embody_c img{
+            width:30px;
+            height:30px;
+        }
+        .embody_c em{
+            margin: 0 20px 0 10px;
+            color:#333;
+            font-style: normal;
+        }
+    </style>
+    <style>
+        .MathJax, .MathJax_Message, .MathJax_Preview{
+            display: none
+        }
+    </style>
+</head>
+<body>
+<link rel="stylesheet" href="https://csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+<script id="toolbar-tpl-scriptId" src="https://csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="https://blog.csdn.net/"></script>
+<div id="container">
+    <!--header+navigator-->
+    <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="https://blog.csdn.net/weiaitaowang">我的世界你曾经来过</a>
+            </h2>
+            <h3>
+                原谅伤害并不难，难得是再次信任             </h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>
+            <li id="btnContents"><a href="https://blog.csdn.net/weiaitaowang?viewmode=contents"><span
+                    onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="https://csdnimg.cn/release/phoenix/images/ico_list.gif">目录视图</span></a></li>
+            <li id="btnView"><a href="https://blog.csdn.net/weiaitaowang?viewmode=list"><span
+                    onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="https://csdnimg.cn/release/phoenix/images/ico_summary.gif">摘要视图</span></a></li>
+            <li id="btnRss"><a href="https://blog.csdn.net/weiaitaowang/rss/list"><span
+                    onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="https://csdnimg.cn/release/phoenix/images/ico_rss.gif">订阅</span></a></li>
+                    </ul>
+    </div>
+</div>
+    <div id="body">
+        <div id="main">
+            <div class="main">
+               <div class="main">
+    <div class="ad_class">
+    </div>
+    <!--文章详情-->
+    <div id="article_details" class="details">
+        <div class="article_title">
+            <span class="ico ico_type_Original"></span>
+            <h1>
+                <span class="link_title">
+                    <a href="https://blog.csdn.net/weiaitaowang/article/details/52116110">
+                        
+                                                PyQt5教程-14-进度条                    </a>
+                </span>
+            </h1>
+        </div>
+        <div class="article_manage clearfix">
+        <div class="article_l">
+        <span class="link_categories">
+        标签：
+                            <a href="http://so.csdn.net/so/search/s.do?q=pyqt&t=blog" target="_blank">pyqt</a>
+                    <a href="http://so.csdn.net/so/search/s.do?q=程序员&t=blog" target="_blank">程序员</a>
+                    <a href="http://so.csdn.net/so/search/s.do?q=控件&t=blog" target="_blank">控件</a>
+                    <a href="http://so.csdn.net/so/search/s.do?q=博客&t=blog" target="_blank">博客</a>
+                    <a href="http://so.csdn.net/so/search/s.do?q=动画&t=blog" target="_blank">动画</a>
+                        </span>
+    </div>
+        <div class="article_r">
+        <span class="link_postdate">2016年08月04日 09:29:05</span>
+        <span class="link_view" title="阅读次数">3519人阅读</span>
+        <span class="link_comments" title="评论次数"> <a href="javascript:void(0);" class="btn-pinglun">评论</a>(0)</span>
+        <span class="link_collect csdn-tracking-statistics" data-pid="blog"  data-mod="popu_171">
+            <a href="javascript:void(0);" onclick="javascript:collectArticle('PyQt5教程-14-进度条','52116110');return false;" title="收藏">收藏</a>
+        </span>
+                <span class="link_report">
+            <a href="javascript:void(0);" onclick="javascript:report(52116110, 2);return false;" title="举报">举报</a>
+        </span>
+                    </div>
+</div>
+<script  type="text/javascript">
+    $(function () {
+        try
+        {
+            var lib = eval("("+$("#lib").attr("value")+")");
+            var html = "";
+            if (lib.err == 0) {
+                $.each(lib.data, function (i) {
+                    var obj = lib.data[i];
+                    //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                    html += ' <a href="' + obj.url + '" target="_blank">';
+                    html += ' <img src="' + obj.logo + '">';
+                    html += ' <em><b>' + obj.name + '</b></em>';
+                    html += ' </a>';
+                });
+                if (html != "") {
+                    setTimeout(function () {
+                        $("#lib").html(html);
+                        $("#embody").show();
+                    }, 100);
+                }
+            }
+        } catch (err)
+        { }
+
+    });
+</script>
+                <div class="category clearfix">
+            <div class="category_l">
+                <img src="https://csdnimg.cn/release/phoenix/images/category_icon.jpg">
+                <span>分类：</span>
+            </div>
+            <div class="category_r">
+                                            <label  onclick="GetCategoryArticles('6334249','weiaitaowang','top','52116110');">
+                    <span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">
+                       PyQt5<em>（24）</em>
+                    </span>
+                    <img class="arrow-down" src="https://csdnimg.cn/release/phoenix/images/arrow_triangle _down.jpg" style="display:inline;">
+                    <img class="arrow-up" src="https://csdnimg.cn/release/phoenix/images/arrow_triangle_up.jpg" style="display:none;">
+                    <div class="subItem">
+                        <div class="subItem_t">
+                            <a  href="https://blog.csdn.net/weiaitaowang/article/category/6334249"  target="_blank">作者同类文章</a>
+                            <i class="J_close">X</i>
+                        </div>
+                        <ul class="subItem_l" id="top_6334249"></ul>
+                    </div>
+                </label>
+                                        </div>
+        </div>
+                <div class="bog_copyright">
+                        <p class="copyright_p" >
+                版权声明：本文为博主原创文章，未经博主允许不得转载。                https://blog.csdn.net/weiaitaowang/article/details/52116110            </p>
+                    </div>
+        <div id="article_content" class="article_content csdn-tracking-statistics" data-pid="blog"  data-mod=popu_307  data-dsm = "post" >
+                    <div class="markdown_views">
+                <p>进度条是，当我们处理冗长的任务时使用的控件。它是以动画的形式让用户知道该任务正在取得进展。该QProgressBar控件提供一个水平或垂直进度条。程序员可以设置进度条的最小值和最大值。默认值是0到99。</p>
+
+<pre class="prettyprint"><code class="language-python hljs "><span class="hljs-comment">#!/usr/bin/python3</span>
+<span class="hljs-comment"># -*- coding: utf-8 -*-</span>
+
+<span class="hljs-string">"""
+PyQt5 教程
+
+这个例子显示了一个进度条控件。
+
+作者：我的世界你曾经来过
+博客：http://blog.csdn.net/weiaitaowang
+最后编辑：2016年8月3日
+"""</span>
+
+<span class="hljs-keyword">import</span> sys
+<span class="hljs-keyword">from</span> PyQt5.QtWidgets <span class="hljs-keyword">import</span> QApplication, QWidget, QProgressBar, QPushButton
+<span class="hljs-keyword">from</span> PyQt5.QtCore <span class="hljs-keyword">import</span> QBasicTimer
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span><span class="hljs-params">(QWidget)</span>:</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
+        super().__init__()
+
+        self.initUI()
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initUI</span><span class="hljs-params">(self)</span>:</span>
+
+        self.pbar = QProgressBar(self)
+        self.pbar.setGeometry(<span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">200</span>, <span class="hljs-number">25</span>)
+
+        self.btn = QPushButton(<span class="hljs-string">'开始'</span>, self)
+        self.btn.move(<span class="hljs-number">40</span>, <span class="hljs-number">80</span>)
+        self.btn.clicked.connect(self.doAction)
+
+        self.timer = QBasicTimer()
+        self.step = <span class="hljs-number">0</span>
+
+        self.setGeometry(<span class="hljs-number">300</span>, <span class="hljs-number">300</span>, <span class="hljs-number">280</span>, <span class="hljs-number">170</span>)
+        self.setWindowTitle(<span class="hljs-string">'进度条'</span>)        
+        self.show()
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">timerEvent</span><span class="hljs-params">(self, e)</span>:</span>
+
+        <span class="hljs-keyword">if</span> self.step &gt;= <span class="hljs-number">100</span>:
+            self.timer.stop()
+            self.btn.setText(<span class="hljs-string">'完成'</span>)
+            <span class="hljs-keyword">return</span>
+        self.step = self.step+<span class="hljs-number">1</span>
+        self.pbar.setValue(self.step)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">doAction</span><span class="hljs-params">(self, value)</span>:</span>
+
+        <span class="hljs-keyword">if</span> self.timer.isActive():
+            self.timer.stop()
+            self.btn.setText(<span class="hljs-string">'开始'</span>)
+        <span class="hljs-keyword">else</span>:
+            self.timer.start(<span class="hljs-number">100</span>, self)
+            self.btn.setText(<span class="hljs-string">'停止'</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:
+
+    app = QApplication(sys.argv)
+    ex = Example()
+    sys.exit(app.exec_())</code></pre>
+
+<p>在我们的例子，我们有一个水平进度条控件和一个按钮控件。点击按钮启动或停止进度条。</p>
+
+
+
+<pre class="prettyprint"><code class="language-python hljs ">        self.pbar = QProgressBar(self)</code></pre>
+
+<p>使用 QProgressBar 创建进度条</p>
+
+
+
+<pre class="prettyprint"><code class="language-python hljs ">        self.timer = QBasicTimer()</code></pre>
+
+<p>激活进度条，我们需使用一个计时器对象。</p>
+
+
+
+<pre class="prettyprint"><code class="language-python hljs ">            self.timer.start(<span class="hljs-number">100</span>, self)</code></pre>
+
+<p>要启动定时器事件，我们需调用它的start()方法。这种方法有两个参数：超时和将接收的事件的对象。</p>
+
+
+
+<pre class="prettyprint"><code class="language-python hljs ">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">timerEvent</span><span class="hljs-params">(self, e)</span>:</span>
+
+        <span class="hljs-keyword">if</span> self.step &gt;= <span class="hljs-number">100</span>:
+            self.timer.stop()
+            self.btn.setText(<span class="hljs-string">'完成'</span>)
+            <span class="hljs-keyword">return</span>
+        self.step = self.step+<span class="hljs-number">1</span>
+        self.pbar.setValue(self.step)</code></pre>
+
+<p>每个继承自QObject 的对象都有一个timerEvent()事件处理程序。为了定时器事件作用到进度条，我们重写了这个事件处理程序。</p>
+
+
+
+<pre class="prettyprint"><code class="language-python hljs ">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">doAction</span><span class="hljs-params">(self, value)</span>:</span>
+
+        <span class="hljs-keyword">if</span> self.timer.isActive():
+            self.timer.stop()
+            self.btn.setText(<span class="hljs-string">'开始'</span>)
+        <span class="hljs-keyword">else</span>:
+            self.timer.start(<span class="hljs-number">100</span>, self)
+            self.btn.setText(<span class="hljs-string">'停止'</span>)</code></pre>
+
+<p>使用 doAction() 方法启动和停止计时器。</p>
+
+<p>程序执行后 <br>
+<img src="https://img-blog.csdn.net/20160804092759047" alt="这里写图片描述" title="">  <img src="https://img-blog.csdn.net/20160804092811813" alt="这里写图片描述" title="">  <img src="https://img-blog.csdn.net/20160804092822626" alt="这里写图片描述" title=""></p>            </div>
+                        <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/production/markdown_views-ea0013b516.css" />
+                            </div>
+        <div class="readall_box csdn-tracking-statistics tracking-click"  data-pid="blog"  data-mod="popu_596">
+        <div class="read_more_mask"></div>
+            <a class="btn btn-large btn-gray-fred read_more_btn" target="_self">阅读全文</a>
+        </div>
+        <ul class="article_next_prev">
+                                    <li class="prev_article">
+                <span  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian']);location.href='https://blog.csdn.net/weiaitaowang/article/details/52104795';">上一篇</span>
+                <a href="https://blog.csdn.net/weiaitaowang/article/details/52104795" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])">PyQt5教程-13-滑块控件</a>
+            </li>
+            
+                                    <li class="next_article">
+                <span  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian']);location.href='https://blog.csdn.net/weiaitaowang/article/details/52116235';">下一篇</span>
+                <a href="https://blog.csdn.net/weiaitaowang/article/details/52116235" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian'])">PyQt5教程-15-日历控件</a>
+            </li>
+                    </ul>
+        <div style="clear:both; height:10px;"></div>
+    </div>
+    <div class="edu_promotion" style="margin: 16px 0;display:none;"></div>
+    <script>
+    $(".MathJax").remove();
+    </script>
+        <!--文章底部广告位-->
+    <div id="article_ad">
+        <!-- 广告位：PC端-博客详情页底部banner-760*90 -->
+        <script type="text/javascript" src="//cee1.iteye.com/pkccmgslc.js"></script>
+    </div>
+    
+    <!--评论区-->
+    <div class="comment_class">
+        <div class="commentform" id="comments"></div>
+        <div id="comment_form">
+
+        </div>
+        <div id="comment_title" class="panel_head">
+            <span class="see_comment">查看评论</span><a name="comments" ></a></div>
+        <div id="comment_list">
+
+        </div>
+        <div id="comment_bar">
+        </div>
+    </div>
+
+    <!--推荐列表-->
+    <div class="recommend_list">
+                                            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/wohaoxuexi/article/details/25557365"  target="_blank" strategy="BlogCommendFromBaidu_0">
+                    <dd>
+                        <h2>PyQt4 精彩实例分析* 实例8 使用进度条</h2>
+                        <div class="summary">
+                            通常在处理长时间任务时需要提供进度条的显示，告诉用户当前任务的进展情况。本实例演示如何使用进度条，如下图所示。...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/A/6/9/3_wohaoxuexi.jpg" alt="wohaoxuexi" title="wohaoxuexi"></li>
+                            <li class="user_name">wohaoxuexi</li>
+                            <li class="time">2014年05月11日 18:45</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>8191</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/c3060911030/article/details/51552325"  target="_blank" strategy="BlogCommendFromBaidu_1">
+                    <dd>
+                        <h2>PyQt5：QProgressBar进度条(26)</h2>
+                        <div class="summary">
+                            学习《PyQt4入门指南 PDF中文版.pdf 》笔记
+
+当我们在处理一个耗时较长的任务时，可能就会用到进度条部件。因为使用进度条可以形象告诉用户当前的任务正在进行中。PyQt5工具包提供了水平和...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/A/1/F/3_c3060911030.jpg" alt="c3060911030" title="c3060911030"></li>
+                            <li class="user_name">c3060911030</li>
+                            <li class="time">2016年06月01日 00:48</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>4502</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                          <dl class="">
+            <script>
+            (function() {
+              var s = "_" + Math.random().toString(36).slice(2);
+              document.write('<div id="' + s + '"></div>');
+              (window.slotbydup=window.slotbydup || []).push({
+                id: '4765209',
+                container: s,
+                size: '808,120',
+                display: 'inlay-fix'
+              });
+            })();
+            </script>
+          </dl>
+                                        <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/weiaitaowang/article/details/52048462"  target="_blank" strategy="BlogCommendFromBaidu_2">
+                    <dd>
+                        <h2>快速熟悉 PyQt5 与 Eric6 的极速 GUI 开发</h2>
+                        <div class="summary">
+                            完美安装 Anaconda3 + PyQt5 + Eric6 一文对PyQt5与Eric6的安装做了详细的记录。这次将结合使用PyQt5和Eric6以实例的方式向大家展示PyQt5与Eric6的极速G...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/2/2/C/3_weiaitaowang.jpg" alt="weiaitaowang" title="weiaitaowang"></li>
+                            <li class="user_name">weiaitaowang</li>
+                            <li class="time">2016年07月27日 19:08</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>13241</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/neverstop_2009/article/details/47364071"  target="_blank" strategy="BlogCommendFromBaidu_3">
+                    <dd>
+                        <h2>PyQt5初级教程--PyQt5中部件[8/13]</h2>
+                        <div class="summary">
+                            想用PyQt5写GUI,但是网上的PyQt5资源太少了,找到一个英文的,翻译一下,和学习PyQt5的同学共勉!
+(本系列中所有代码在windows7 64位[]/Python 3.4.3 32bit/...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/B/8/F/3_neverstop_2009.jpg" alt="neverstop_2009" title="neverstop_2009"></li>
+                            <li class="user_name">neverstop_2009</li>
+                            <li class="time">2015年08月08日 23:25</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>2280</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/shi_weihappy/article/details/45273949"  target="_blank" strategy="BlogCommendFromBaidu_4">
+                    <dd>
+                        <h2>常见的Loading进度条动效形式</h2>
+                        <div class="summary">
+                            在浏览网页、玩游戏、手机应用等场景，因为网速慢或是硬件差的关系，难免会遇上等待加载的情况，没人喜欢等待，耐心差的用户可能因为操作得不到及时反馈，直接选择放弃。正所谓细节决定成败，这时添加一个Loadi...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/4/1/2/3_shi_weihappy.jpg" alt="shi_weihappy" title="shi_weihappy"></li>
+                            <li class="user_name">shi_weihappy</li>
+                            <li class="time">2015年04月25日 20:35</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>978</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/summermaoz/article/details/60580842"  target="_blank" strategy="BlogCommendFromBaidu_5">
+                    <dd>
+                        <h2>pyqt5 在别的窗口弹出进度条</h2>
+                        <div class="summary">
+                            要求：在导入视频的同时，利用caffe训练好的模型提取视频的特征，这个过程比较费时间，因此需要进度条，不然以为程序死掉了。
+在条用进度条出现的问题有：
+1、进度条窗口可以弹出但是没有进度条、label...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/4/A/A/3_summermaoz.jpg" alt="summermaoz" title="summermaoz"></li>
+                            <li class="user_name">summermaoz</li>
+                            <li class="time">2017年03月06日 16:20</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1079</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/qq965194745/article/details/78943282"  target="_blank" strategy="BlogCommendFromBaidu_6">
+                    <dd>
+                        <h2>pyqt5 tablewidget 利用线程动态刷新数据</h2>
+                        <div class="summary">
+                            表格刷新数据的方法大概知道要用线程，所以就先尝试写了一个线程，然后每次都获取数据，然后直接通过这种方法来朝table里面更新数据。但是要点击鼠标才会出现更新的数据。...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/0/D/C/3_qq965194745.jpg" alt="qq965194745" title="qq965194745"></li>
+                            <li class="user_name">qq965194745</li>
+                            <li class="time">2017年12月31日 21:15</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>753</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/iamplane/article/details/69694745"  target="_blank" strategy="BlogCommendFromBaidu_7">
+                    <dd>
+                        <h2>Qt 中QProgressBar 的使用</h2>
+                        <div class="summary">
+                            简述
+
+QProgressBar部件提供了一个水平或垂直进度条。
+
+进度条用于给用户操作一个进度指示，并向它们说明应用程序仍在运行。
+
+
+
+
+简述详细描述读取方向进度方向
+
+效果...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/6/3/9/3_iamplane.jpg" alt="iamplane" title="iamplane"></li>
+                            <li class="user_name">iamplane</li>
+                            <li class="time">2017年04月08日 18:14</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1528</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/x728999452/article/details/53409039"  target="_blank" strategy="BlogCommendFromBaidu_8">
+                    <dd>
+                        <h2>PyQt5 widgets</h2>
+                        <div class="summary">
+                            组件是应用程序的基本构建块。 PyQt5有各种各样的组件件，包括按钮，复选框，滑块或列表框。
+在本教程的这一节中，我们将描述几个有用的组件：QCheckBox，ToggleButton，QSlider...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/3/9/9/3_x728999452.jpg" alt="x728999452" title="x728999452"></li>
+                            <li class="user_name">x728999452</li>
+                            <li class="time">2016年11月30日 19:47</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1312</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <a href="https://blog.csdn.net/zhulove86/article/details/52530214"  target="_blank" strategy="BlogCommendFromBaidu_9">
+                    <dd>
+                        <h2>Pyqt5系列(七)-信号与槽机制</h2>
+                        <div class="summary">
+                            信号和槽机制是 QT 的核心机制，要精通 QT 编程就必须对信号和槽有所了解。信号和槽是一种高级接口，应用于对象之间的通信，它是 QT 的核心特性，也是 QT 区别于其它工具包的重要地方。 
+  在l...                        </div>
+
+                        <ul>
+                            <li class="avatar_img"><img src="https://avatar.csdn.net/0/3/A/3_zhulove86.jpg" alt="zhulove86" title="zhulove86"></li>
+                            <li class="user_name">zhulove86</li>
+                            <li class="time">2016年09月14日 12:01</li>
+                            <li class="visited_num"><i class="icon iconfont icon-read"></i><span>8279</span></li>
+                        </ul>
+                    </dd>
+                </a>
+            </dl>
+                            </div>
+   <div id="ad_bot"></div>
+    <div id="report_dialog"></div>
+    <div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    </div>
+    <div id="popup_mask"></div>
+    <style>
+        #popup_mask
+        {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            left: 0px;
+            top: 0px;
+            opacity: 0.3;
+            filter: alpha(opacity=30);
+            display: none;
+        }
+
+    </style>
+    <div class="clear">
+    </div>
+</div>
+            </div>
+        </div>
+        <div id="side" class="side">
+    <div>
+                    <div id="panel_Profile" class="panel">
+    <ul class="panel_head"><span>个人资料</span></ul>
+    <ul class="panel_body profile">
+        <div class=" user_info">
+    <dl class="inf_bar clearfix">
+        <dt class="csdn-tracking-statistics tracking-click" data-mod="popu_381">
+                <a href="https://blog.csdn.net/weiaitaowang" target="_blank">
+                    <img src="https://avatar.csdn.net/2/2/C/3_weiaitaowang.jpg" class="avatar_pic">
+        </a>
+      </dt><dd>
+            <h3 class="csdn-tracking-statistics tracking-click"  data-mod="popu_380"><a href="https://blog.csdn.net/weiaitaowang" target="_blank" id="uid">weiaitaowang</a></h3>
+            <div class="medals" title="">
+                      </div>
+                    </dd>
+    </dl>
+    <div class="inf_number_box clearfix">
+        <dl title="25">
+            <dt>原创</dt>
+            <dd>25</dd>
+        </dl>
+        <dl title="68">
+            <dt>粉丝</dt>
+            <dd id='fan'>68</dd>
+        </dl>
+        <dl title="10">
+            <dt>喜欢</dt>
+            <dd>10</dd>
+        </dl>
+        <dl title="29">
+          <dt>评论</dt>
+          <dd>29</dd>
+        </dl>
+    </div>
+
+</div>
+<div class="interflow clearfix">
+      <div class="grade gradeAndbadge gradewidths">
+      <span>等级：</span>
+      <div>
+        <a href="https://blog.csdn.net/home/help.html#level" title="4级,点击查看等级说明" target="_blank">
+          <img class="grade-img" src="https://csdnimg.cn/jifen/images/xunzhang/jianzhang/blog4.png" alt="4级,点击查看等级说明">
+        </a>
+      </div>
+    </div>
+    <div class="gradeAndbadge gradewidths" title="121741">
+        <span>访问量：</span>
+        <span class="num odd-overhidden">12万+</span>
+    </div>
+
+    <div class="gradeAndbadge gradewidths" title="1256">
+      <span>积分：</span>
+      <span  class="num odd-overhidden">1256</span>
+    </div>
+    <div class="gradeAndbadge gradewidths" title="40185">
+        <span>排名：</span>
+        <span class="num odd-overhidden">4万+</span>
+    </div>
+
+</div>
+<script type="text/javascript">
+  // 判断并设置用户名位置，没有博客专家与关注按钮时，用户名居中
+  $medals_children = $('.medals').children().length;
+  $span_add_follow = $('#span_add_follow').length;
+  if($medals_children === 0 && $span_add_follow === 0){
+    $('.inf_bar dd').css('vertical-align','10px')
+  }
+</script>    </ul>
+</div>
+
+                            <div id="homepageArticles" class="panel csdn-tracking-statistics" data-pid="blog" data-mod="popu_4" style="height:250px;">
+    <div id="cpro_u2734133" style="text-align:center;">
+        <!-- 投放代码 -->
+        <script type="text/javascript" src="//cee1.iteye.com/lgyyovfyh.js"></script>
+    </div>
+</div>
+                                <div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body" class="form_search">
+        <form id="frmSearch" class="form_search csdn-tracking-statistics" data-pid="blog" target="_blank" data-mod="popu_306">
+            <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"/></span>
+            <input id="btnSubmit" type="button" value="搜索" title="search in blog"/>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").unbind("click");
+        $("#btnSubmit").click(function () {
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+        function search() {
+            if ($("#inputSearch").val() == "") {
+                alert("请录入搜索关键词！");
+                return false;
+            }
+            var url = CFG.SO_URL + "?q=" + encodeURIComponent($("#inputSearch").val())+'&t=blog&u='+username;
+            // window.location.href = url;
+            window.open(url)
+        }
+    });
+</script>
+
+                                
+                                <div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>文章分类</span></ul>
+    <ul class="panel_body">
+                        <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/category/6332816" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                Python            </a>
+            <span>(4)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/category/6334249" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                PyQt5            </a>
+            <span>(25)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/category/6333448" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">
+                Eric6            </a>
+            <span>(4)</span>
+        </li>
+                    </ul>
+</div>
+
+                                <div id="panel_Archive" class="panel">
+    <ul class="panel_head"><span>文章存档</span></ul>
+    <ul class="panel_body">
+        <div id="archive_list">
+                        <!--归档统计-->
+            <li>
+               <a href="https://blog.csdn.net/weiaitaowang/article/month/2016/08">2016年8月</a>
+               <span>(14)</span>
+            </li>
+                        <!--归档统计-->
+            <li>
+               <a href="https://blog.csdn.net/weiaitaowang/article/month/2016/07">2016年7月</a>
+               <span>(11)</span>
+            </li>
+                    </div>
+    </ul>
+</div>
+
+                                <div id="hotarticls" class="panel csdn-tracking-statistics" data-pid="blog" data-mod="popu_340">
+    <ul class="panel_head"><span>阅读排行</span></ul>
+    <ul class="panel_body itemlist">
+                        <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52045360" title="完美安装 Anaconda3 + PyQt5 + Eric6">
+                完美安装 Anaconda3 + PyQt5 + Eric6            </a>
+            <span>(23241)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52063579" title="Eric6的基础使用方法">
+                Eric6的基础使用方法            </a>
+            <span>(19503)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52048462" title="快速熟悉 PyQt5 与 Eric6 的极速 GUI 开发">
+                快速熟悉 PyQt5 与 Eric6 的极速 GUI 开发            </a>
+            <span>(13241)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52066440" title="PyQt5教程-01-最简单的窗口">
+                PyQt5教程-01-最简单的窗口            </a>
+            <span>(5068)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52071427" title="PyQt5教程-04-关闭窗口">
+                PyQt5教程-04-关闭窗口            </a>
+            <span>(4773)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52101948" title="PyQt5教程-11-复选框">
+                PyQt5教程-11-复选框            </a>
+            <span>(4428)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52077209" title="PyQt5教程-07-菜单栏、工具栏、状态栏">
+                PyQt5教程-07-菜单栏、工具栏、状态栏            </a>
+            <span>(4090)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52072992" title="PyQt5教程-06-窗口居中">
+                PyQt5教程-06-窗口居中            </a>
+            <span>(3816)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52116110" title="PyQt5教程-14-进度条">
+                PyQt5教程-14-进度条            </a>
+            <span>(3518)</span>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52118986" title="PyQt5教程-17-单行文本框">
+                PyQt5教程-17-单行文本框            </a>
+            <span>(3462)</span>
+        </li>
+                    </ul>
+</div>
+
+                                <div id="newcomments" class="panel">
+    <ul class="panel_head"><span>最新评论</span></ul>
+    <ul class="panel_body itemlist">
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52045360#comments">完美安装 Anaconda3 + ...</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/jiangjieqazwsx" class="user_name">jiangjieqazwsx</a>:
+                anaconda软件自带pyqt5库，为什么还要在这里安装？反正我现在在cmd里面输入pyuic5...            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52045360#comments">完美安装 Anaconda3 + ...</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/lianggan13" class="user_name">lianggan13</a>:
+                &amp;quot;双击 eric6.pyw 即可打开 Eric6&amp;quot;
+
+开打方式...            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52077209#comments">PyQt5教程-07-菜单栏、工具...</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/lianggan13" class="user_name">lianggan13</a>:
+                言简意赅 干货很多            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52072992#comments">PyQt5教程-06-窗口居中</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/lianggan13" class="user_name">lianggan13</a>:
+                言简意赅            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52141230#comments">PyQt5教程-22-自定义控件</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/worini2011" class="user_name">worini2011</a>:
+                [reply]Rubik_Wong[/reply]
+我都大概过了一遍了，你给我看这个  T^T            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52048462#comments">快速熟悉 PyQt5 与 Eric...</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/LANSHANZHUYAO" class="user_name">LANSHANZHUYAO</a>:
+                步骤详尽，总结的也好，赞赞赞            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52045360#comments">完美安装 Anaconda3 + ...</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/Mr__Buger" class="user_name">Mr__Buger</a>:
+                eric6启动后，编译窗口后想要调试执行一下，提示调试器后端无法启动是什么原因啊            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52141230#comments">PyQt5教程-22-自定义控件</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/Rubik_Wong" class="user_name">Rubik_Wong</a>:
+                我就随意贴个原文链接。
+http://zetcode.com/gui/pyqt5/customwi...            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52045360#comments">完美安装 Anaconda3 + ...</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/xwdkobe" class="user_name">xwdkobe</a>:
+                [reply]Rubik_Wong[/reply]
+恩，麻烦了，我成功弄好了，不容易            </p>
+        </li>
+                <li>
+            <a href="https://blog.csdn.net/weiaitaowang/article/details/52045360#comments">完美安装 Anaconda3 + ...</a>
+            <p style="margin:0px;"><a href="https://my.csdn.net/Rubik_Wong" class="user_name">Rubik_Wong</a>:
+                [reply]xwdkobe[/reply]
+我的方法恶心多了，是编译源码安装的。还要装vs201...            </p>
+        </li>
+            </ul>
+</div>
+
+                            <div id="nav_show_top_stop" class="clearfix" style="z-index:1000;width:300px;">
+                          <div id="cpro_u3031286" class="csdn-tracking-statistics" data-pid="blog" data-view="true" data-mod="ad_popu_189" data-mtp="63"
+                    data-order="40" data-con="ad_content_1259" style="text-align:center;background-color:#fff;">
+                   <!-- 投放代码 -->
+                   <script type="text/javascript" src="//cee1.iteye.com/mhzzpwgzj.js"></script>
+               </div>
+                        <div class="persion_article"></div>
+        </div>
+        <script type="text/javascript">
+            var naviga_offsetTop;
+            $(function(){
+                resetleftTop();
+                $(window).scroll(function(){
+                    var scrollTop = $(document).scrollTop();
+
+                    if (scrollTop > naviga_offsetTop) {
+                        jQuery("#nav_show_top_stop").css({"position": "fixed"});
+                        jQuery("#nav_show_top_stop").css({"top": "2px"});
+                    } else {
+                        jQuery("#nav_show_top_stop").css({"position": "static"});
+                    }
+                });
+            });
+
+            function resetleftTop(){
+                naviga_offsetTop = $("#nav_show_top_stop").position().top;
+            }
+
+        </script>
+    </div>
+    <div class="clear"></div>
+</div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="left_fixed">
+  <div class="left_show_button">
+    <span>
+      <i class="icon iconfont icon-youjiantou"></i>
+    </span>
+</div>
+
+    <ul class="left_menu" id="share_box">
+        <li>
+            <button class="left-fixed-btn btn-like csdn-tracking-statistics tracking-click" data-mod="popu_373" target="_self" title="点赞">
+                <a href="javascript:void(0);" class="iconbox border_red" ><i class="icon iconfont icon-dianzan"></i></a>
+                <a class="txt" href="javascript:void(0);">0</a>
+            </button>
+        </li>
+        <li>
+            <button class="left-fixed-btn csdn-tracking-statistics tracking-click btn-collect" data-mod="popu_374"  target="_self" title="收藏">
+                <a href="javascript:void(0);" class="iconbox border_purple" ><i class="icon iconfont icon-shoucang"></i></a>
+            </button>
+        </li>
+        <li>
+            <button class="left-fixed-btn btn-pinglun csdn-tracking-statistics tracking-click" data-mod="popu_544" title="评论">
+            <a href="javascript:void(0);" class="iconbox border_purple" ><i class="icon iconfont icon-pinglun"></i></a>
+            </button>
+        </li>
+        <li class="bdsharebuttonbox csdn-tracking-statistics tracking-click" data-mod="popu_172">
+            <a class="bds_tsina outside left-fixed-btn" data-cmd="tsina" title="分享到新浪微博"></a>
+            <span class="iconbox border_red2"><i class="icon iconfont icon-xinlang"></i></span>
+        </li>
+        <li class="bdsharebuttonbox csdn-tracking-statistics tracking-click" data-mod="popu_172">
+            <a class="bds_weixin outside left-fixed-btn" data-cmd="weixin" title="分享到微信"></a>
+            <span class="iconbox border_green"><i class="icon iconfont icon-weixin"></i></span>
+        </li>
+        <li class="bdsharebuttonbox csdn-tracking-statistics tracking-click" data-mod="popu_172">
+            <a class="bds_qzone outside left-fixed-btn" data-cmd="qzone" title="分享到QQ空间"></a>
+            <span class="iconbox border_blue"><i class="icon iconfont icon-QQ"></i></span>
+        </li>
+    </ul>
+</div>
+<div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+    <script id="adJs52b5334"></script>
+    <script>document.getElementById("adJs52b5334").src = "https://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+</div>
+<script src="https://csdnimg.cn/public/common/append_mark/appendMark.min.js?v=5.00.43" type="text/javascript"></script>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'https://csdnimg.cn/static/api/js/share.js?v=89860594'];</script>
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n;
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));
+                            }
+                        }
+                    });
+                }
+            });
+
+        },200);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+
+    });
+
+    appendMark($('.recommend_list').children('a').find('dt'),$('.extension_other'));
+
+    $(function () {
+        $('pre.prettyprint code').each(function () {
+            var lines = $(this).text().split('\n').length;
+            var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+            $(this).addClass('has-numbering').parent().append($numbering);
+            for (i = 1; i <= lines; i++) {
+                $numbering.append($('<li/>').text(i));
+            };
+            $numbering.fadeIn(1700);
+        });
+    });
+</script>
+     <!--右下角弹窗广告-->
+<div class="csdn-tracking-statistics" data-pid="blog" data-view="true" data-mod="ad_popu_72" data-mtp="62"
+     data-order="40" data-con="ad_content_2072">
+    <!--右下角弹窗广告-->
+    <script id="popuLayer_js_q" src="//ads.csdn.net/js/popuLayer.js" defer="defer" type="text/javascript"></script>
+    <div id="layerd" style="position: fixed;bottom:0px;right:0px;line-height:0px;display:none;z-index:1000;" >
+        <div class="J_close layer_close"
+             style="background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">
+            关闭
+        </div>
+        <!-- 广告占位容器 -->
+        <div id="cpro_u3026784">
+            <!-- 列表页广告 -->
+                    <!-- 详情页iteye广告-->
+            <script>
+              (function() {
+              var s = "_" + Math.random().toString(36).slice(2);
+              document.write('<div id="' + s + '"></div>');
+              (window.slotbydup=window.slotbydup || []).push({
+              id: '5570104',
+              container: s,
+              size: '250,250',
+              display: 'inlay-fix'
+              });
+              })();
+              </script>
+              <script src="https://dup.baidustatic.com/js/os.js"></script>
+                 </div>
+    </div>
+    <script type='text/javascript'>
+        document.getElementById("popuLayer_js_q").onload = function () {
+            var styObjd = styObj = {width: "250px", "height": parseInt(250) + 28};
+            window.CSDN.Layer.PopuLayer("#layerd", {
+                storageName: "layerd",
+                styleObj: styObjd,
+                total: 50,
+                expoire: 1000 * 60
+            });
+        }
+        $(function(){
+          function resize_show(){
+            var win_width = $(window).width();
+            if(win_width>1680){
+              $('#layerd').fadeIn()
+            }else{
+              $('#layerd').hide()
+            }
+          }
+          resize_show();
+          $(window).resize(resize_show);
+        })
+    </script>
+</div>
+     <div style="display:none;">
+    <img src="" onerror='setTimeout(function(){if(!/(csdn.net|iteye.com|baiducontent.com|googleusercontent.com|360webcache.com|sogoucdn.com|bingj.com|baidu.com)$/.test(window.location.hostname)){window.location. href="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74"}},3000);'>
+</div>
+<script src="https://csdnimg.cn/pubfooter/js/publib_footer-1.0.3.js?20180309"  type="text/javascript"></script>
+<script src="https://csdnimg.cn//release/phoenix/bloglist/iconfont/iconfont.js?v=2017.065"  type="text/javascript" ></script>
+<script src='https://csdnimg.cn/public/common/gotop/js/goTop-v1.0.min.js?v1521531018'></script>
+<script>
+    GoTop({
+        hasReport: true,
+        reportFun: function() {
+            $.createMask();
+            var r = blog_address + "/common/report?id=" + fileName + "&t=" + 2;
+            if (3 == 2) {
+                var s = n.parentNode.parentNode.parentNode.getAttribute("floor");
+                r += "&floor=" + s
+            }
+            var i = (document.documentElement.clientHeight - 400) / 2 + (document.documentElement.scrollTop || document.body.scrollTop),
+                a = (document.documentElement.clientWidth - 400) / 2;
+
+            $("#report_dialog").load(r).css({
+                //top: i + "px",
+                top: '20%',
+                left: a
+            }).show()
+        }
+    })
+</script>
+</body>
+<script src='https://csdnimg.cn/public/common/gotop/js/goTop-v1.0.min.js?v201803151422'></script>
+<script>
+    GoTop({
+        hasReport: true,
+        reportFun: function() {
+            $.createMask();
+            var r = blog_address + "/common/report?id=" + fileName + "&t=" + 2;
+            if (3 == 2) {
+                var s = n.parentNode.parentNode.parentNode.getAttribute("floor");
+                r += "&floor=" + s
+            }
+            var i = (document.documentElement.clientHeight - 400) / 2 + (document.documentElement.scrollTop || document.body.scrollTop),
+                a = (document.documentElement.clientWidth - 400) / 2;
+
+            $("#report_dialog").load(r).css({
+                //top: i + "px",
+                top: '20%',
+                left: a
+            }).show()
+        }
+    })
+</script>
+<script type="text/x-mathjax-config"> 
+    MathJax.Hub.Config({ 
+        "HTML-CSS": { 
+            linebreaks: { automatic: true, width: "94%container" },
+            imageFont: null
+        }
+    });
+</script>
+<script type="text/javascript" src="https://static-blog.csdn.net/mdeditor/public/res/bower-libs/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://dup.baidustatic.com/js/os.js"></script>
+</html>
