@@ -40,13 +40,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.table.customContextMenuRequested.connect(self._right_menu)
-        sys.stdout = EmittingStream(textWritten=self.outputWritten)
-        sys.stderr = EmittingStream(textWritten=self.outputWritten)
+        # sys.stdout = EmittingStream(textWritten=self.outputWritten)
+        # sys.stderr = EmittingStream(textWritten=self.outputWritten)
         self.textEdit.setReadOnly(True)
         logger.info('[*] Load system config')
         self.conf = Config('system.ini')
         self.system = None
         self.thread_pool = QThreadPool()
+        self.process = QProcess(self)
+        self.process.readyRead.connect(self.data_ready)
+        # self.process.started.connect(lambda: self.runButton.setEnabled(False))
+        # self.process.finished.connect(lambda: self.runButton.setEnabled(True))
 
     def _right_menu(self, point):
         menu = QMenu()
@@ -64,39 +68,52 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def init_system(self):
         logger.info('[*] Init system')
-        print(self.conf.sections())
+        self.prog = os.join(os.path.dirname(__file__),
         print(self.conf['server'])
 
     def on_start(self):
         logger.info('[*] System start')
-        # # # from subprocess import *
-        # # # from subprocess import STARTUPINFO  # 对于python2.7需要单独引用STARTUPINFO
-        # # # from server.connector import tcp_reverse_handler
+        self.init_system()
+        self.process.start('python', ['/home/uuu/covertutils/examples/tcp_reverse_handler.py', '4433', 'pass'])
+
+        # from subprocess import *
+        # from subprocess import STARTUPINFO  # 对于python2.7需要单独引用STARTUPINFO
+        # from server.connector import tcp_reverse_handler
         # import os
         # startupinfo = STARTUPINFO()
         # startupinfo.dwFlags |= STARTF_USESHOWWINDOW
         # startupinfo.wShowWindow = SW_HIDE
         # print(os.getcwd())
-        # # self.system = Popen(['cmd c:\\python27\\python.exe '+ os.getcwd() + '\\'+self.conf.get('controller', 'connector'),
-        # #                      self.conf.get('controller', 'port'), self.conf.get('controller', 'password')], stdin=PIPE,
-        # #                     stdout=PIPE, stderr=PIPE, shell=False, startupinfo=startupinfo)
-        # # w = Worker(Popen("cmd"))
-        # # w.signals.result.connect(get_result)
-        # # # self.system.wait()
-        # # out, err = self.system.communicate(b'whoami')
-        # # print(out.decode('gbk'))
-        # # print(err)
-        # # print('system start')
-        # # cmd = 'cmd /c c:/python27/python.exe ' + self.conf.get('controller', 'connector')
-        # # args = [self.conf.get('controller', 'port'), self.conf.get('controller', 'password')]
-        # # self.system = QProcess(self)
-        # # self.system.start('cmd /c dir', ['.'])
-        # # self.system.readyReadStandardOutput.connect(lambda: print(self.system.readAllStandardOutput()))
-        # # self.system.readyReadStandardError.connect(lambda: self.system.readAllStandardError())
+        # self.system = Popen(['cmd c:\\python27\\python.exe '+ os.getcwd() + '\\'+self.conf.get('controller', 'connector'),
+        #                      self.conf.get('controller', 'port'), self.conf.get('controller', 'password')], stdin=PIPE,
+        #                     stdout=PIPE, stderr=PIPE, shell=False, startupinfo=startupinfo)
+        # w = Worker(Popen("cmd"))
+        # w.signals.result.connect(get_result)
+        # # self.system.wait()
+        # out, err = self.system.communicate(b'whoami')
+        # print(out.decode('gbk'))
+        # print(err)
+        # print('system start')
+        # cmd = 'cmd /c c:/python27/python.exe ' + self.conf.get('controller', 'connector')
+        # args = [self.conf.get('controller', 'port'), self.conf.get('controller', 'password')]
+        # self.system = QProcess(self)
+        # self.system.start('cmd /c dir', ['.'])
+        # self.system.readyReadStandardOutput.connect(lambda: print(self.system.readAllStandardOutput()))
+        # self.system.readyReadStandardError.connect(lambda: self.system.readAllStandardError())
         # print(self.system.communicate('help'))
 
-    def _start_handler(self, handler):
-        pass
+    def callProgram(self):
+        # run the process
+        # `start` takes the exec and a list of arguments
+        # self.process.start('ping', ['127.0.0.1'])
+        self.process.start('python', ['/home/uuu/covertutils/examples/tcp_reverse_handler.py', '4433', 'pass'])
+
+
+    def data_ready(self):
+        cursor = self.textEdit.textCursor()
+        cursor.movePosition(cursor.End)
+        cursor.insertText(str(self.process.readAll(), encoding='utf-8'))
+        self.textEdit.ensureCursorVisible()
 
     def on_restart(self):
         pass
