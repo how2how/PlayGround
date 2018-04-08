@@ -1,0 +1,9 @@
+from PyInstaller.__main__ import run
+if __name__ == '__main__':
+    opts = [r'E:\workspace\Python\Learns\MyFrame.py',\
+            '-F','-w',r'--distpath=E:\workspace\Python\Learns',\
+            r'--workpath=E:\workspace\Python\Learns',\
+            r'--specpath=E:\workspace\Python\Learns',\
+            r'--icon=E:\workspace\Python\Learns\exe.ico',\
+            r'--upx-dir','upx393w']
+    run(opts)
