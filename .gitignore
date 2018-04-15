@@ -1,4 +1,5 @@
 *.py[c,o]
 *.iml
 .idea
+*.log
 __pycache__
