@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainTable.ui'
 #
-# Created by: PyQt5 UI code generator 5.10.1
+# Created by: PyQt5 UI code generator 5.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -70,7 +70,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.splitter)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 20))
         self.menubar.setObjectName("menubar")
         self.menu = QtWidgets.QMenu(self.menubar)
         self.menu.setObjectName("menu")
@@ -147,6 +147,7 @@ class Ui_MainWindow(object):
         self.toolBar_2.addAction(self.action_process)
 
         self.retranslateUi(MainWindow)
+        # self.textEdit.textChanged.connect(self.textEdit.selectAll)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

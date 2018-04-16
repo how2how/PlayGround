@@ -7,23 +7,13 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from PyQt5 import QtGui
 from PyQt5 import QtCore
-from PyQt5.QtCore import QThreadPool, QProcess
+from PyQt5.QtCore import QThreadPool, QProcess, Qt
 from PyQt5.QtWidgets import *
 
 from controller.ui import *
 from controller.config import Config
 from controller.logger import logger
-from controller.multithread import Worker
-
-
-class EmittingStream(QtCore.QObject):
-    textWritten = QtCore.pyqtSignal(str)  # 定义一个发送str的信号
-    #
-    # def __init__(self, parent=None):
-    #     super().__init__(parent)
-
-    def write(self, text):
-        self.textWritten.emit(str(text))
+from controller.utils import XStream
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -43,9 +33,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.table.customContextMenuRequested.connect(self._right_menu)
-        # sys.stdout = EmittingStream().textWritten.connect(self.outputWritten)
-        # sys.stderr = EmittingStream().textWritten.connect(self.outputWritten)
-        # self.textEdit.setReadOnly(True)
+        XStream.stdout().messageWritten.connect(self.textEdit.insertPlainText)
+        # XStream.stderr().messageWritten.connect(self.textEdit.insertPlainText)
         logger.info('[*] Load system config')
         self.conf = Config('system.ini')
         self.system = None
@@ -56,6 +45,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.process.started.connect(lambda: self.write_data('help'))
         self.process.error.connect(self.on_error)
         # self.textEdit.textChanged.connect(lambda: self.write_data(self.textEdit.document()))
+        # self.textEdit.textChanged.connect(lambda: print(self.textEdit.toPlainText()))
         # self.process.finished.connect(lambda: self.runButton.setEnabled(True))
 
     def _right_menu(self, point):
@@ -64,13 +54,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         menu.addAction(self.action_cmd)
         menu.addAction(self.action_process)
         menu.exec_(self.table.viewport().mapToGlobal(point))
-
-    def outputWritten(self, text):
-        cursor = self.textEdit.textCursor()
-        cursor.movePosition(QtGui.QTextCursor.End)
-        cursor.insertText(text)
-        self.textEdit.setTextCursor(cursor)
-        self.textEdit.ensureCursorVisible()
 
     def init_system(self):
         logger.info('[*] Init system')
@@ -170,6 +153,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def show_server_settings(self):
         svr = DialogSvrSettings(self, self.conf)
         svr.show()
+
+
+class ConsoleLog(QTextEdit):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+    def keyReleaseEvent(self, e):
+        if e.key() == Qt.Key_Enter:
+            print(self.toPlainText())
 
 
 class DialogFile(QDialog, Ui_File):

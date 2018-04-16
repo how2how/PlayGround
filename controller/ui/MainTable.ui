@@ -145,7 +145,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>23</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -348,5 +348,22 @@
  <resources>
   <include location="../test.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>textEdit</sender>
+   <signal>textChanged()</signal>
+   <receiver>textEdit</receiver>
+   <slot>selectAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>499</x>
+     <y>536</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>536</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
