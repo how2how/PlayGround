@@ -87,7 +87,7 @@ Orchestrator objects utilize the `raw data` to **(stream, message)** tuple trans
 		ret = self.identity[:length]
 		if self.reverse :
 			true_str = 'F' * length
-			return xor_str( true_str.decode('hex'), ret.decode('hex') ).encode('hex')
+			return xor_str( true_str.decode('hex'), ret.decode('hex')).encode('hex')
 		return ret
 
 
@@ -157,7 +157,7 @@ Orchestrator objects utilize the `raw data` to **(stream, message)** tuple trans
 
 
 	def getStreams( self ) :
-		return self.streams_buckets.keys()
+		return list(self.streams_buckets.keys())
 
 	def getKeyCycles( self, stream ) :
 		e_cycles = self.streams_buckets[stream]['keys']['encryption'].getCycles()
@@ -186,8 +186,8 @@ This method resets all components of the `Orchestrator` instance, effectively re
 		self.streamIdent.reset()
 
 
-	def getStreams( self ) :
-		return self.streams_buckets.keys()
+	# def getStreams( self ) :
+	# 	return self.streams_buckets.keys()
 
 
 	def __dissectTag( self, chunk ) :

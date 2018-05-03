@@ -1,6 +1,10 @@
 from server.core.exceptions import *
 
 from os import urandom
+try:
+    import xrange as range
+except:
+    pass
 
 
 class Chunker :
@@ -11,7 +15,7 @@ The Chunker class is used to initialize chunk and de-chunk messages.
 
 	__has_more_tag = '\x00'
 
-	def __init__( self, chunk_length, dechunk_length = None, reverse = False ) :
+	def __init__( self, chunk_length, dechunk_length=None, reverse=False):
 		"""
 :param int chunk_length: This parameter defines the size of the output chunks, containing tagging.
 :param int dechunk_length: This parameter defines the size of the input chunks, containing tagging.
@@ -36,7 +40,7 @@ The Chunker class is used to initialize chunk and de-chunk messages.
 		chunk_size = self.out_length
 		chunks = []
 
-		for i in xrange(0, len( payload ), chunk_size) :
+		for i in range(0, len( payload ), chunk_size) :
 
 			chunk = payload[i:i + chunk_size]
 			tag = self.__has_more_tag

@@ -31,7 +31,7 @@ It does so by comparing the output lengths.
 			message = ' '
 		zips = []
 		for comp in self.comps :
-			zfile = comp( message )
+			zfile = comp( message.encode('utf-8') )
 			zips.append( zfile )
 
 		sorted_zips = sorted( zips, key = lambda tup:len( tup ) )
