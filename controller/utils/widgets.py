@@ -12,7 +12,7 @@ from PyQt5.QtCore import pyqtSignal as Signal, Qt, QPoint, QEvent, QTimer, QCore
 
 from controller.utils import BaseEditMixin
 from controller.utils.py3compat import to_text_string, PY3, str_lower, is_text_string, is_string
-from controller.utils.qthelpers import create_action, add_actions
+from controller.utils.qthelpers import create_action, add_actions, restore_keyevent
 
 
 def insert_text_to(cursor, text, fmt):
@@ -122,7 +122,6 @@ class TextEditBaseWidget(QPlainTextEdit, BaseEditMixin):
                 style = "QPlainTextEdit#%s {background: %s; color: %s;}" % \
                         (self.objectName(), background.name(), foreground.name())
                 self.setStyleSheet(style)
-
 
     #------Extra selections
     def extra_selection_length(self, key):
@@ -295,7 +294,6 @@ class TextEditBaseWidget(QPlainTextEdit, BaseEditMixin):
             self.bracepos = (pos1,)
             self.__highlight(self.bracepos, color=self.unmatched_p_color)
 
-
     #-----Widget setup and options
     def set_codecompletion_auto(self, state):
         """Set code completion state"""
@@ -327,7 +325,6 @@ class TextEditBaseWidget(QPlainTextEdit, BaseEditMixin):
         else:
             wrap_mode = QTextOption.NoWrap
         self.setWordWrapMode(wrap_mode)
-
 
     #------Reimplementing Qt methods
     # @Slot()
@@ -585,9 +582,7 @@ class TextEditBaseWidget(QPlainTextEdit, BaseEditMixin):
             prev_pos = cur_pos
         cell_at_file_end = cursor.atEnd()
         cell_at_screen_end = cursor.position() >= end_pos
-        return cursor, \
-               cell_at_file_start and cell_at_file_end, \
-               cell_at_screen_start and cell_at_screen_end
+        return cursor,  cell_at_file_start and cell_at_file_end, cell_at_screen_start and cell_at_screen_end
 
     def go_to_next_cell(self):
         """Go to the next cell of lines"""
@@ -814,7 +809,6 @@ class TextEditBaseWidget(QPlainTextEdit, BaseEditMixin):
         cursor.endEditBlock()
         self.ensureCursorVisible()
 
-
     #------Code completion / Calltips
     def hide_tooltip_if_necessary(self, key):
         """Hide calltip when necessary"""
@@ -872,7 +866,6 @@ class TextEditBaseWidget(QPlainTextEdit, BaseEditMixin):
     def is_completion_widget_visible(self):
         """Return True is completion list widget is visible"""
         return self.completion_widget.isVisible()
-
 
     #------Standard keys
     def stdkey_clear(self):
@@ -933,7 +926,6 @@ class TextEditBaseWidget(QPlainTextEdit, BaseEditMixin):
 
     def stdkey_escape(self):
         pass
-
 
     #----Qt Events
     def mousePressEvent(self, event):
@@ -1494,15 +1486,10 @@ class ShellBaseWidget(ConsoleBaseWidget):
         self.clear()
 
     # The buffer being edited
-    def _set_input_buffer(self, text):
-        """Set input buffer"""
-        if self.current_prompt_pos is not None:
-            self.replace_text(self.current_prompt_pos, 'eol', text)
-        else:
-            self.insert(text)
-        self.set_cursor_position('eof')
 
-    def _get_input_buffer(self):
+    # def _get_input_buffer(self):
+    @property
+    def input_buffer(self):
         """Return input buffer"""
         input_buffer = ''
         if self.current_prompt_pos is not None:
@@ -1510,7 +1497,17 @@ class ShellBaseWidget(ConsoleBaseWidget):
             input_buffer = input_buffer.replace(os.linesep, '\n')
         return input_buffer
 
-    input_buffer = Property("QString", _get_input_buffer, _set_input_buffer)
+    # def _set_input_buffer(self, text):
+    @input_buffer.setter
+    def input_buffer(self, text):
+        """Set input buffer"""
+        if self.current_prompt_pos is not None:
+            self.replace_text(self.current_prompt_pos, 'eol', text)
+        else:
+            self.insert(text)
+        self.set_cursor_position('eof')
+
+    # input_buffer = Property("QString", _get_input_buffer, _set_input_buffer)
 
     #------ Prompt
     def new_prompt(self, prompt):
