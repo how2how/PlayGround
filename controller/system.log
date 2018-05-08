@@ -89,3 +89,6 @@ IndexError: list index out of range
 2018-05-08 22:06:10,388:40:INFO:[*] Load system config
 2018-05-08 22:06:12,291:90:INFO:[*] System start
 2018-05-08 22:06:12,291:65:INFO:[*] Init system
+2018-05-08 22:25:10,011:40:INFO:[*] Load system config
+2018-05-08 22:25:18,640:90:INFO:[*] System start
+2018-05-08 22:25:18,640:65:INFO:[*] Init system
