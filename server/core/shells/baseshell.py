@@ -18,7 +18,7 @@ import cmd
 import logging
 log_format = "%(name)s:\n%(message)s"
 # debug_format = "%(name)s:%(message)s".format(debug_preamp)
-logging.basicConfig( format = log_format )
+logging.basicConfig(format=log_format)
 
 try:
 	raw_input          # Python 2
@@ -107,9 +107,7 @@ The base class of the package. It implements basics, like hooking the :class:`se
 		self.subshells_dict[stream_name]['queues']['condition'] = Condition()
 		self.subshells_dict[stream_name]['shell'] = subshell_class(stream, self.handler, self.subshells_dict[stream_name]['queues'], self, self.ignore_messages, **subshell_kwargs )
 
-
-
-	def addSubShellLogging( self, orch_id, stream ) :
+	def addSubShellLogging(self, orch_id, stream):
 		log_preamp = "{id}.{stream}".format(id = orch_id, stream = stream)
 		debug_preamp = "{}.debug".format(log_preamp)
 		# print debug_preamp
@@ -126,9 +124,9 @@ The base class of the package. It implements basics, like hooking the :class:`se
 			message_hdlr = logging.FileHandler(self.output)
 			message_logger.propagate = False
 			message_logger.addHandler(message_hdlr)
-		else :
-			try : os.mkdir(orch_id)
-			except : pass
+		else:
+			try: os.mkdir(orch_id)
+			except: pass
 			message_hdlr = logging.FileHandler('%s/%s.log' % (orch_id, stream))
 			message_logger.addHandler(message_hdlr)
 			message_logger.propagate = False
@@ -209,7 +207,8 @@ The base class of the package. It implements basics, like hooking the :class:`se
 				else :
 					print ('')
 					return False
-
+			except Exception as e:
+				raise e
 
 	def do_help( self, line ) :
 		self.streamCharacterHelp( )

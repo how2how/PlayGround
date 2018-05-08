@@ -149,7 +149,7 @@ If `stream` is `None`, the default Orchestrator's stream will be used.
         while self.on:
             raw_data = self.receive_function()
             stream, message = self.orchestrator.depositChunk(raw_data)
-            message_consumer = Thread(target=self.__consume, args=(stream, message))
+            message_consumer = Thread(target=self.__consume, args=(stream.decode('utf-8'), message.decode('utf-8')))
             message_consumer.daemon = True
             message_consumer.start()
         # self.__consume( stream, message )

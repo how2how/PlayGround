@@ -50,7 +50,8 @@ class MyHandler( BaseHandler ) :
 		global s
 		s.close()
 
-handler = MyHandler( recv, send, orch )
-shell = ExtendableShell(handler, prompt = "(%s:%d)> " % client_addr, debug = True )
+
+handler = MyHandler(recv, send, orch)
+shell = ExtendableShell(handler, prompt="(%s:%d)> " % client_addr, debug=True)
 
 shell.start()

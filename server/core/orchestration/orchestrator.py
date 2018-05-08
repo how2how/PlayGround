@@ -210,9 +210,9 @@ This method resets all components of the `Orchestrator` instance, effectively re
 		compressed = self.compressor.compress( message )
 
 		chunker = self.getChunkerForStream( stream )
-		chunks = chunker.chunkMessage( compressed )
+		chunks = chunker.chunkMessage(compressed.decode('utf-8'))
 		ready_chunks = []
-		for chunk in chunks :
+		for chunk in chunks:
 			tag = self.streamIdent.getIdentifierForStream( stream,
 				byte_len = self.tag_length )
 			encryption_key = self.streams_buckets[stream]['keys']['encryption']

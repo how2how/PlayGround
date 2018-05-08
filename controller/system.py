@@ -1,8 +1,10 @@
-from PyQt5.QtCore import QThreadPool, QProcess, QObject, Qt
+from PyQt5.QtCore import QThreadPool, QProcess, QObject, Qt, pyqtSignal
 from PyQt5.QtWidgets import *
 
 
 class System(QObject):
+    onDataReady = pyqtSignal(str)
+
     def __init__(self, parent=None):
         super().__init__(parent)
         self.task_list = []
@@ -20,26 +22,17 @@ class System(QObject):
     def stop(self):
         pass
 
-    def output(self, widget=None, encoding='utf-8'):
-        if not widget:
-            return str(self.process.readAll(), encoding=encoding)
-        if isinstance(widget, QTextEdit):
-            cursor = self.textEdit.textCursor()
-            cursor.movePosition(cursor.End)
-            cursor.insertText(str(self.process.readAll(), encoding=encoding))
-            self.textEdit.setTextCursor(cursor)
-            self.textEdit.ensureCursorVisible()
+    def output(self, text=None, encoding='utf-8'):
+        text = text or str(self.process.readAll(), encoding=encoding)
+        self.onDataReady.emit(text)
 
-    def input(self, widget=None):\
-        pass
-
-    def run(self):
-        pass
-
-    def write_data(self, data):
+    def input(self, data):
         if not data.endswith('\n'):
             data += '\n'
             self.process.write(bytes(data, encoding='utf-8'))
+
+    def run(self):
+        pass
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Escape:

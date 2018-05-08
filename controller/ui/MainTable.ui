@@ -40,16 +40,16 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <property name="leftMargin">
-     <number>3</number>
+     <number>0</number>
     </property>
     <property name="topMargin">
      <number>1</number>
     </property>
     <property name="rightMargin">
-     <number>3</number>
+     <number>0</number>
     </property>
     <property name="bottomMargin">
-     <number>0</number>
+     <number>1</number>
     </property>
     <item>
      <widget class="QSplitter" name="splitter">
@@ -57,10 +57,7 @@
        <enum>Qt::Vertical</enum>
       </property>
       <property name="handleWidth">
-       <number>3</number>
-      </property>
-      <property name="childrenCollapsible">
-       <bool>false</bool>
+       <number>1</number>
       </property>
       <widget class="QTableWidget" name="table">
        <property name="sizePolicy">
@@ -127,12 +124,17 @@
         </property>
        </column>
       </widget>
-      <widget class="QTextEdit" name="textEdit">
+      <widget class="QTextEdit" name="console_output">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="console_input">
+       <property name="text">
+        <string>&gt; </string>
        </property>
       </widget>
      </widget>
@@ -145,7 +147,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>20</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -350,9 +352,9 @@
  </resources>
  <connections>
   <connection>
-   <sender>textEdit</sender>
+   <sender>console_output</sender>
    <signal>textChanged()</signal>
-   <receiver>textEdit</receiver>
+   <receiver>console_output</receiver>
    <slot>selectAll()</slot>
    <hints>
     <hint type="sourcelabel">

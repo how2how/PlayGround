@@ -33,20 +33,26 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.table.customContextMenuRequested.connect(self._right_menu)
-        XStream.stdout().messageWritten.connect(self.textEdit.insertPlainText)
-        # XStream.stderr().messageWritten.connect(self.textEdit.insertPlainText)
+        XStream.stdout().messageWritten.connect(self._system_output)
+        XStream.stderr().messageWritten.connect(self._system_output)
+        # self.console_output.hide()
+        # self.console_input.hide()
         logger.info('[*] Load system config')
         self.conf = Config('system.ini')
         self.system = None
         self.thread_pool = QThreadPool()
         self.process = QProcess(self)
-        self.process.readyRead.connect(self.data_ready)
+        self.process.readyRead.connect(self.on_data_ready)
         self.process.waitForStarted(1)
-        self.process.started.connect(lambda: self.write_data('help'))
+        # self.process.started.connect(lambda: self.write_data('help'))
         self.process.error.connect(self.on_error)
-        # self.textEdit.textChanged.connect(lambda: self.write_data(self.textEdit.document()))
+        # self.textEdit.textChanged.connect(self.on_console_changed)
         # self.textEdit.textChanged.connect(lambda: print(self.textEdit.toPlainText()))
-        # self.process.finished.connect(lambda: self.runButton.setEnabled(True))
+        self.process.finished.connect(self._system_finished)
+        self.console_input.returnPressed.connect(self._system_input)
+
+    def _system_finished(self):
+        print('System quit')
 
     def _right_menu(self, point):
         menu = QMenu()
@@ -62,25 +68,34 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.password = self.conf.get('controller', 'password')
 
     def on_error(self):
-        print(str(self.process.readAllStandardError(), encoding='utf-8'))
+        logger.error(str(self.process.readAllStandardError(), encoding='utf-8'))
 
-    def write_data(self, data):
-        if not data.endswith('\n'):
-            data += '\n'
+    def on_enter_press(self):
+        data = self.console_input.text.split(' ')
+
+    def _system_input(self, data=None, prompt='> '):
+        try:
+            data = data or self.console_input.text()
+            data = data.replace(prompt, '') + '\n'
+        except Exception as e:
+            logger.exception(e)
+
+        if self.process.isOpen() and self.process.isWritable():
             self.process.write(bytes(data, encoding='utf-8'))
-            # self.process.closeWriteChannel()
-            # self.process.waitForFinished()
+        else:
+            print('system is down')
+        self.console_input.setText(prompt)
 
     def on_start(self):
         logger.info('[*] System start')
         self.init_system()
         # self.process.start('python', ['/home/uuu/covertutils/examples/tcp_reverse_handler.py', '4433', 'pass'])
-        # self.process.start('c:/python27/python.exe', [self.prog, self.port, self.password])
+        self.process.start('c:/python27/python.exe', [self.prog, self.port, self.password])
         # self.process.write('help\n')
         # self.process.closeWriteChannel()
         # self.process.waitForFinished(100)
-        self.process.start('cmd')
-        self.process.write(b'help')
+        # self.process.start('cmd')
+        # self.process.write(b'help')
 
     def on_write(self, e):
         print(e)
@@ -119,11 +134,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # self.process.start('ping', ['127.0.0.1'])
         # self.process.start('python', ['/home/uuu/covertutils/examples/tcp_reverse_handler.py', '4433', 'pass'])
 
-    def data_ready(self):
-        cursor = self.textEdit.textCursor()
+    def _system_output(self, text):
+        cursor = self.console_output.textCursor()
         cursor.movePosition(cursor.End)
-        cursor.insertText(str(self.process.readAll(), encoding='gbk'))
-        self.textEdit.ensureCursorVisible()
+        cursor.insertText(text)
+        self.console_output.ensureCursorVisible()
+
+    def on_data_ready(self):
+        self._system_output(str(self.process.readAll(), encoding='gbk'))
 
     def on_restart(self):
         pass

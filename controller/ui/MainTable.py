@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainTable.ui'
 #
-# Created by: PyQt5 UI code generator 5.6
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -27,12 +27,11 @@ class Ui_MainWindow(object):
         self.centralwidget.setSizePolicy(sizePolicy)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.horizontalLayout.setContentsMargins(3, 1, 3, 0)
+        self.horizontalLayout.setContentsMargins(0, 1, 0, 1)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.splitter = QtWidgets.QSplitter(self.centralwidget)
         self.splitter.setOrientation(QtCore.Qt.Vertical)
-        self.splitter.setHandleWidth(3)
-        self.splitter.setChildrenCollapsible(False)
+        self.splitter.setHandleWidth(1)
         self.splitter.setObjectName("splitter")
         self.table = QtWidgets.QTableWidget(self.splitter)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
@@ -60,17 +59,19 @@ class Ui_MainWindow(object):
         item = QtWidgets.QTableWidgetItem()
         self.table.setHorizontalHeaderItem(6, item)
         self.table.horizontalHeader().setStretchLastSection(False)
-        self.textEdit = QtWidgets.QTextEdit(self.splitter)
+        self.console_output = QtWidgets.QTextEdit(self.splitter)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.textEdit.sizePolicy().hasHeightForWidth())
-        self.textEdit.setSizePolicy(sizePolicy)
-        self.textEdit.setObjectName("textEdit")
+        sizePolicy.setHeightForWidth(self.console_output.sizePolicy().hasHeightForWidth())
+        self.console_output.setSizePolicy(sizePolicy)
+        self.console_output.setObjectName("console_output")
+        self.console_input = QtWidgets.QLineEdit(self.splitter)
+        self.console_input.setObjectName("console_input")
         self.horizontalLayout.addWidget(self.splitter)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 20))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 23))
         self.menubar.setObjectName("menubar")
         self.menu = QtWidgets.QMenu(self.menubar)
         self.menu.setObjectName("menu")
@@ -147,7 +148,7 @@ class Ui_MainWindow(object):
         self.toolBar_2.addAction(self.action_process)
 
         self.retranslateUi(MainWindow)
-        # self.textEdit.textChanged.connect(self.textEdit.selectAll)
+        self.console_output.textChanged.connect(self.console_output.selectAll)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -167,6 +168,7 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Mark"))
         item = self.table.horizontalHeaderItem(6)
         item.setText(_translate("MainWindow", "SessionId"))
+        self.console_input.setText(_translate("MainWindow", "> "))
         self.menu.setTitle(_translate("MainWindow", "配置"))
         self.about.setTitle(_translate("MainWindow", "关于"))
         self.menu_2.setTitle(_translate("MainWindow", "功能"))

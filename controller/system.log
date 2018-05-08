@@ -1,29 +1,91 @@
-2018-04-16 05:31:19,769:38:INFO:[*] Load system config
-2018-04-16 05:31:47,628:38:INFO:[*] Load system config
-2018-04-16 05:32:30,977:38:INFO:[*] Load system config
-2018-04-16 05:32:40,214:74:INFO:[*] System start
-2018-04-16 05:32:40,215:58:INFO:[*] Init system
-2018-04-16 05:38:32,623:38:INFO:[*] Load system config
-2018-04-16 05:38:38,870:75:INFO:[*] System start
-2018-04-16 05:40:43,990:38:INFO:[*] Load system config
-2018-04-16 05:40:45,486:75:INFO:[*] System start
-2018-04-16 05:40:45,486:59:INFO:[*] Init system
-2018-04-16 05:45:20,190:38:INFO:[*] Load system config
-2018-04-16 05:45:22,885:75:INFO:[*] System start
-2018-04-16 05:45:48,703:38:INFO:[*] Load system config
-2018-04-16 05:45:50,422:75:INFO:[*] System start
-2018-04-16 05:48:23,761:38:INFO:[*] Load system config
-2018-04-16 05:50:20,942:38:INFO:[*] Load system config
-2018-04-16 05:50:45,765:38:INFO:[*] Load system config
-2018-04-16 05:51:17,730:38:INFO:[*] Load system config
-2018-04-16 05:52:01,066:38:INFO:[*] Load system config
-2018-04-16 05:52:02,844:80:INFO:[*] System start
-2018-04-16 05:52:02,845:64:INFO:[*] Init system
-2018-04-16 05:55:09,928:39:INFO:[*] Load system config
-2018-04-16 05:55:20,887:39:INFO:[*] Load system config
-2018-04-16 06:00:31,498:38:INFO:[*] Load system config
-2018-04-16 06:00:36,501:75:INFO:[*] System start
-2018-04-16 06:00:36,503:59:INFO:[*] Init system
-2018-04-16 06:01:08,949:38:INFO:[*] Load system config
-2018-04-16 06:01:10,925:75:INFO:[*] System start
-2018-04-16 06:01:10,926:59:INFO:[*] Init system
+2018-04-16 21:22:28,252:40:INFO:[*] Load system config
+2018-04-16 21:22:32,639:78:ERROR:list index out of range
+Traceback (most recent call last):
+  File "C:/Users/LL/Desktop/PlayGround/controller/app.py", line 75, in _system_input
+    data = self.console_input.text().split()[1]
+IndexError: list index out of range
+2018-04-16 21:23:26,506:40:INFO:[*] Load system config
+2018-04-16 21:23:27,551:86:INFO:[*] System start
+2018-04-16 21:23:27,551:65:INFO:[*] Init system
+2018-04-16 21:23:41,872:40:INFO:[*] Load system config
+2018-04-16 21:24:17,697:86:INFO:[*] System start
+2018-04-16 21:24:17,697:65:INFO:[*] Init system
+2018-04-16 21:24:55,699:40:INFO:[*] Load system config
+2018-04-16 21:24:57,025:86:INFO:[*] System start
+2018-04-16 21:24:57,025:65:INFO:[*] Init system
+2018-04-16 21:25:39,862:40:INFO:[*] Load system config
+2018-04-16 21:25:41,048:86:INFO:[*] System start
+2018-04-16 21:25:41,048:65:INFO:[*] Init system
+2018-04-16 21:26:59,454:39:INFO:[*] Load system config
+2018-04-16 21:27:04,286:85:INFO:[*] System start
+2018-04-16 21:27:04,286:64:INFO:[*] Init system
+2018-04-16 21:28:06,670:39:INFO:[*] Load system config
+2018-04-16 21:28:08,124:85:INFO:[*] System start
+2018-04-16 21:28:08,124:64:INFO:[*] Init system
+2018-04-16 21:39:53,401:39:INFO:[*] Load system config
+2018-04-16 21:39:54,586:85:INFO:[*] System start
+2018-04-16 21:39:54,586:64:INFO:[*] Init system
+2018-04-16 21:40:20,594:39:INFO:[*] Load system config
+2018-04-16 21:41:25,093:39:INFO:[*] Load system config
+2018-04-16 21:41:29,320:39:INFO:[*] Load system config
+2018-04-16 21:41:31,520:85:INFO:[*] System start
+2018-04-16 21:41:31,535:64:INFO:[*] Init system
+2018-04-16 21:43:25,418:39:INFO:[*] Load system config
+2018-04-16 21:43:26,666:84:INFO:[*] System start
+2018-04-16 21:43:26,666:64:INFO:[*] Init system
+2018-04-16 21:44:31,254:39:INFO:[*] Load system config
+2018-04-16 21:44:41,100:84:INFO:[*] System start
+2018-04-16 21:44:41,100:64:INFO:[*] Init system
+2018-04-16 21:45:28,136:39:INFO:[*] Load system config
+2018-04-16 21:45:29,981:84:INFO:[*] System start
+2018-04-16 21:45:29,981:64:INFO:[*] Init system
+2018-04-16 21:47:53,945:39:INFO:[*] Load system config
+2018-04-16 21:47:59,056:84:INFO:[*] System start
+2018-04-16 21:47:59,056:64:INFO:[*] Init system
+2018-04-16 21:48:12,933:39:INFO:[*] Load system config
+2018-04-16 21:48:14,404:84:INFO:[*] System start
+2018-04-16 21:48:14,404:64:INFO:[*] Init system
+2018-04-16 21:48:48,377:39:INFO:[*] Load system config
+2018-04-16 21:51:16,898:39:INFO:[*] Load system config
+2018-04-16 21:54:33,782:39:INFO:[*] Load system config
+2018-04-16 21:54:35,498:86:INFO:[*] System start
+2018-04-16 21:54:35,498:64:INFO:[*] Init system
+2018-04-16 21:55:59,651:39:INFO:[*] Load system config
+2018-04-16 21:56:01,137:87:INFO:[*] System start
+2018-04-16 21:56:01,152:64:INFO:[*] Init system
+2018-04-16 21:57:25,645:39:INFO:[*] Load system config
+2018-04-16 21:57:27,363:88:INFO:[*] System start
+2018-04-16 21:57:27,363:64:INFO:[*] Init system
+2018-04-16 21:58:18,320:39:INFO:[*] Load system config
+2018-04-16 22:01:20,841:39:INFO:[*] Load system config
+2018-04-16 22:02:20,398:39:INFO:[*] Load system config
+2018-04-16 22:02:22,664:88:INFO:[*] System start
+2018-04-16 22:02:22,664:64:INFO:[*] Init system
+2018-04-16 22:07:55,729:39:INFO:[*] Load system config
+2018-04-16 22:12:29,069:39:INFO:[*] Load system config
+2018-04-16 22:12:30,333:86:INFO:[*] System start
+2018-04-16 22:12:30,333:64:INFO:[*] Init system
+2018-04-16 22:13:04,757:39:INFO:[*] Load system config
+2018-04-16 22:13:09,457:86:INFO:[*] System start
+2018-04-16 22:13:09,457:64:INFO:[*] Init system
+2018-04-16 22:51:11,871:39:INFO:[*] Load system config
+2018-04-16 22:51:13,915:89:INFO:[*] System start
+2018-04-16 22:51:13,930:64:INFO:[*] Init system
+2018-04-16 22:54:25,858:39:INFO:[*] Load system config
+2018-04-16 22:56:12,237:40:INFO:[*] Load system config
+2018-04-16 22:56:46,308:40:INFO:[*] Load system config
+2018-04-16 22:56:49,352:90:INFO:[*] System start
+2018-04-16 22:56:49,352:65:INFO:[*] Init system
+2018-04-16 23:00:58,779:40:INFO:[*] Load system config
+2018-04-16 23:01:00,433:90:INFO:[*] System start
+2018-04-16 23:01:00,433:65:INFO:[*] Init system
+2018-04-16 23:09:39,223:90:INFO:[*] System start
+2018-04-16 23:09:39,223:65:INFO:[*] Init system
+2018-04-16 23:48:30,264:90:INFO:[*] System start
+2018-04-16 23:48:30,264:65:INFO:[*] Init system
+2018-05-08 22:01:47,596:40:INFO:[*] Load system config
+2018-05-08 22:01:49,858:90:INFO:[*] System start
+2018-05-08 22:01:49,858:65:INFO:[*] Init system
+2018-05-08 22:06:10,388:40:INFO:[*] Load system config
+2018-05-08 22:06:12,291:90:INFO:[*] System start
+2018-05-08 22:06:12,291:65:INFO:[*] Init system

@@ -2,4 +2,6 @@
 *.iml
 .idea
 *.log
+*.debug
 __pycache__
+system.log
