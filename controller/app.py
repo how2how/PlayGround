@@ -75,12 +75,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         logger.info('[*] System start')
         self.init_system()
         # self.process.start('python', ['/home/uuu/covertutils/examples/tcp_reverse_handler.py', '4433', 'pass'])
-        # self.process.start('c:/python27/python.exe', [self.prog, self.port, self.password])
+        self.process.start('c:/python27/python.exe', [self.prog, self.port, self.password])
         # self.process.write('help\n')
         # self.process.closeWriteChannel()
         # self.process.waitForFinished(100)
-        self.process.start('cmd')
-        self.process.write(b'help')
+        # self.process.start('cmd')
+        # self.process.write(b'help')
 
     def on_write(self, e):
         print(e)
