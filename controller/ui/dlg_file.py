@@ -27,7 +27,7 @@ class Ui_File(object):
         self.listView.setSizePolicy(sizePolicy)
         self.listView.setMinimumSize(QtCore.QSize(100, 0))
         self.listView.setMouseTracking(True)
-        self.listView.setTabletTracking(True)
+        # self.listView.setTabletTracking(True)
         self.listView.setObjectName("listView")
         self.treeView = QtWidgets.QTreeView(self.splitter)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
-from subprocess import *
+
+from controller.utils.workers import WorkerManager
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -34,19 +35,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.table.customContextMenuRequested.connect(self._right_menu)
         XStream.stdout().messageWritten.connect(self.textEdit.insertPlainText)
-        # XStream.stderr().messageWritten.connect(self.textEdit.insertPlainText)
+        XStream.stderr().messageWritten.connect(self.textEdit.insertPlainText)
         logger.info('[*] Load system config')
         self.conf = Config('system.ini')
         self.system = None
         self.thread_pool = QThreadPool()
         self.process = QProcess(self)
         self.process.readyRead.connect(self.data_ready)
-        self.process.waitForStarted(1)
+        # self.process.waitForStarted(1)
         self.process.started.connect(lambda: self.write_data('help'))
         self.process.error.connect(self.on_error)
         # self.textEdit.textChanged.connect(lambda: self.write_data(self.textEdit.document()))
         # self.textEdit.textChanged.connect(lambda: print(self.textEdit.toPlainText()))
         # self.process.finished.connect(lambda: self.runButton.setEnabled(True))
+
+        self.process_manager = WorkerManager(max_threads=4)
 
     def _right_menu(self, point):
         menu = QMenu()
