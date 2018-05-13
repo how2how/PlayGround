@@ -30,7 +30,7 @@ class MultiShell(cmd.Cmd):
         cmd.Cmd.__init__(self)
         self.shells = {}
         for shell in shells:
-            self.__add_handler_shell(shell )
+            self.__add_handler_shell(shell)
 
         self.prompt = 'covertpreter> '
 

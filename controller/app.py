@@ -33,12 +33,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.table.customContextMenuRequested.connect(self._right_menu)
+
         XStream.stdout().messageWritten.connect(self._system_output)
         XStream.stderr().messageWritten.connect(self._system_output)
-        # self.console_output.hide()
-        # self.console_input.hide()
+        self.console_output.hide()
+        self.console_input.hide()
         logger.info('[*] Load system config')
         self.conf = Config('system.ini')
+
         self.system = None
         self.thread_pool = QThreadPool()
         self.process = QProcess(self)
@@ -90,12 +92,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         logger.info('[*] System start')
         self.init_system()
         # self.process.start('python', ['/home/uuu/covertutils/examples/tcp_reverse_handler.py', '4433', 'pass'])
-        self.process.start('c:/python27/python.exe', [self.prog, self.port, self.password])
+        # self.process.start('c:/python27/python.exe', [self.prog, self.port, self.password])
         # self.process.write('help\n')
         # self.process.closeWriteChannel()
         # self.process.waitForFinished(100)
-        # self.process.start('cmd')
-        # self.process.write(b'help')
+        self.process.start('cmd')
+        self.process.write(b'help')
 
     def on_write(self, e):
         print(e)
